@@ -6,6 +6,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { certifications, education, experiences, projects, skills } from './data';
 import './SinglePagePortfolio.css';
 
+// Article type for Medium posts
+interface Article {
+    title: string;
+    link: string;
+    pubDate: string;
+    description: string;
+    thumbnail: string;
+    categories: string[];
+}
+
 /**
  * Story Portfolio - A narrative journey through professional experience
  * 
@@ -20,6 +30,8 @@ export function SinglePagePortfolio() {
     const [activeSection, setActiveSection] = useState('home');
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [articles, setArticles] = useState<Article[]>([]);
+    const [articlesLoading, setArticlesLoading] = useState(true);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const { scrollYProgress } = useScroll({
@@ -27,8 +39,8 @@ export function SinglePagePortfolio() {
         offset: ['start start', 'end end'],
     });
 
-    const sections = useMemo(() => ['home', 'about', 'journey', 'works', 'services', 'contact'], []);
-    const navItems = useMemo(() => ['Prologue', 'Story', 'Journey', 'Works', 'Services', 'Epilogue'], []);
+    const sections = useMemo(() => ['home', 'about', 'journey', 'works', 'services', 'articles', 'contact'], []);
+    const navItems = useMemo(() => ['Prologue', 'Story', 'Journey', 'Works', 'Services', 'Articles', 'Epilogue'], []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -66,6 +78,45 @@ export function SinglePagePortfolio() {
         document.body.style.overflow = mobileMenuOpen ? 'hidden' : 'unset';
         return () => { document.body.style.overflow = 'unset'; };
     }, [mobileMenuOpen]);
+
+    // Fetch Medium articles
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                setArticlesLoading(true);
+                // Using rss2json API to convert Medium RSS to JSON
+                const response = await fetch(
+                    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dino.cosic'
+                );
+                const data = await response.json();
+                
+                if (data.status === 'ok' && data.items) {
+                    const formattedArticles: Article[] = data.items.slice(0, 6).map((item: {
+                        title: string;
+                        link: string;
+                        pubDate: string;
+                        description: string;
+                        thumbnail: string;
+                        categories: string[];
+                    }) => ({
+                        title: item.title,
+                        link: item.link,
+                        pubDate: item.pubDate,
+                        description: item.description.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+                        thumbnail: item.thumbnail || '',
+                        categories: item.categories || [],
+                    }));
+                    setArticles(formattedArticles);
+                }
+            } catch (error) {
+                console.error('Failed to fetch articles:', error);
+            } finally {
+                setArticlesLoading(false);
+            }
+        };
+
+        fetchArticles();
+    }, []);
 
     const scrollToSection = useCallback((sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -808,6 +859,116 @@ export function SinglePagePortfolio() {
                             </div>
                         </motion.div>
                     </div>
+                </motion.div>
+            </section>
+
+            {/* ═══════════════════════════════════════════ */}
+            {/* CHAPTER V - Articles */}
+            {/* ═══════════════════════════════════════════ */}
+            <section id="articles" className="chapter articles-section">
+                <motion.div
+                    className="chapter-header"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <span className="chapter-number">Chapter V</span>
+                    <h2 className="chapter-title">Insights & <em>Articles</em></h2>
+                    <p className="chapter-subtitle">
+                        Thoughts on software architecture, engineering practices, and lessons learned from building products
+                    </p>
+                </motion.div>
+
+                <motion.div
+                    className="articles-grid"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                    {articlesLoading ? (
+                        <div className="articles-loading">
+                            <div className="loading-spinner"></div>
+                            <p>Loading articles...</p>
+                        </div>
+                    ) : articles.length > 0 ? (
+                        articles.map((article, index) => (
+                            <motion.a
+                                key={article.link}
+                                href={article.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="article-card"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                whileHover={{ y: -5 }}
+                            >
+                                {article.thumbnail && (
+                                    <div className="article-thumbnail">
+                                        <img src={article.thumbnail} alt={article.title} />
+                                    </div>
+                                )}
+                                <div className="article-content">
+                                    <div className="article-meta">
+                                        <span className="article-date">
+                                            {new Date(article.pubDate).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric'
+                                            })}
+                                        </span>
+                                        {article.categories.length > 0 && (
+                                            <span className="article-category">{article.categories[0]}</span>
+                                        )}
+                                    </div>
+                                    <h3 className="article-title">{article.title}</h3>
+                                    <p className="article-excerpt">{article.description}</p>
+                                    <span className="article-read-more">
+                                        Read on Medium
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </motion.a>
+                        ))
+                    ) : (
+                        <div className="articles-empty">
+                            <div className="empty-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                    <line x1="16" y1="13" x2="8" y2="13" />
+                                    <line x1="16" y1="17" x2="8" y2="17" />
+                                    <polyline points="10 9 9 9 8 9" />
+                                </svg>
+                            </div>
+                            <p>Articles coming soon...</p>
+                        </div>
+                    )}
+                </motion.div>
+
+                <motion.div
+                    className="articles-cta"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                    <a
+                        href="https://medium.com/@dino.cosic"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="medium-link"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm2.94 0c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.58 1.19 5.75z"/>
+                        </svg>
+                        View all articles on Medium
+                    </a>
                 </motion.div>
             </section>
 
