@@ -1,175 +1,186 @@
-// Portfolio Data - Extracted for better performance and maintainability
+// Portfolio Data - Enriched for SEO & Marketing
+// Keywords: Senior Software Engineer, .NET Developer, Azure Cloud Architect, Technical Lead, Legacy Modernization
 
 export const experiences = [
   {
     company: 'Symphony',
     role: 'Senior Software Engineer',
-    period: 'Aug 2024 – Present',
-    duration: '1+ year',
-    location: 'Remote (symphony.is)',
-    summary: 'Leading monolith-to-microservices modernization using latest versions of .NET, Azure Functions, and Service Bus.',
-    achievements: [
-      'Leading monolith-to-microservices migration using .NET 8, Azure Functions, and Service Bus',
-      'Reduced technical debt and accelerated MVP delivery',
-      'Mentoring juniors in Backend engineering and Cloud architecture',
-    ],
-    technologies: ['.NET', 'Azure', 'Azure Functions', 'Service Bus', 'Microservices', 'C#'],
+    period: '2024 – Present',
+    summary: 'Spearheading the modernization of legacy monolith systems into scalable cloud-native microservices using .NET 8, Azure Functions, and Service Bus. Reduced technical debt while accelerating MVP delivery for enterprise clients. Actively mentoring junior engineers in backend development and cloud architecture best practices.',
+    technologies: ['.NET 8', 'Azure', 'Microservices', 'Service Bus', 'C#'],
   },
   {
     company: 'HTEC Group',
     role: 'Senior Software Engineer',
-    period: 'May 2022 – Aug 2024',
-    duration: '2 years 4 months',
-    location: 'Remote',
-    summary: 'Spearheaded CMS migration to microservices on .NET and Azure.',
-    achievements: [
-      'Migrated legacy CMS to microservices — cut maintenance by 25%',
-      'Achieved 99.9% CI/CD success across 50+ releases',
-      'Built custom Azure Data Factory testing framework → 50% less testing effort',
-    ],
-    technologies: ['.NET', 'Azure', 'Azure Functions', 'Microservices', 'CI/CD', 'Docker'],
+    period: '2022 – 2024',
+    summary: 'Led enterprise CMS migration to microservices architecture, cutting maintenance overhead by 25%. Achieved 99.9% CI/CD pipeline success rate across 50+ production releases. Engineered custom Azure Data Factory testing framework that reduced testing effort by 50%, adopted company-wide.',
+    technologies: ['.NET', 'Azure', 'Docker', 'CI/CD', 'Azure Data Factory'],
   },
   {
     company: 'Authority Partners',
     role: 'Software Developer → Team Lead',
-    period: 'Jun 2019 – May 2022',
-    duration: '3 years',
-    location: 'Remote',
-    summary: 'Promoted to Team Lead within 20 months. Directed 6-person team delivering Fortune client apps.',
-    achievements: [
-      'Promoted in 20 months to lead 6-engineer team',
-      'Delivered apps handling 20,000+ concurrent orders',
-      'Improved team velocity 25% via Agile refinement',
-    ],
-    technologies: ['.NET Core', 'Angular', 'Azure DevOps', 'CI/CD', 'Agile'],
+    period: '2019 – 2022',
+    summary: 'Rapidly promoted to Team Lead within 20 months. Directed a 6-engineer team delivering mission-critical applications for Fortune 500 clients, including systems handling 20,000+ concurrent orders. Improved team velocity by 25% through Agile refinement and process optimization.',
+    technologies: ['.NET Core', 'Angular', 'Azure DevOps', 'Agile', 'SQL Server'],
   },
   {
     company: 'University of Sarajevo',
     role: 'Teaching Assistant',
-    period: 'Mar 2022 – Present',
-    duration: '3+ years (part-time)',
-    location: 'Sarajevo, Bosnia and Herzegovina',
-    summary: 'Mentoring 100+ students annually in .NET, Azure DevOps, and Software Project Management.',
-    achievements: [
-      'Mentor 100+ students annually in .NET and Azure DevOps',
-      'Achieved 95% course satisfaction',
-      'Designed hands-on labs on architecture and design patterns',
-    ],
-    technologies: ['Teaching', '.NET', 'Azure DevOps', 'Architecture', 'Agile'],
+    period: '2022 – Present',
+    summary: 'Mentoring 100+ students annually in .NET development, Azure DevOps, and software project management. Achieved 95% course satisfaction rating. Designed hands-on labs covering clean architecture, design patterns, and modern development workflows.',
+    technologies: ['Teaching', '.NET', 'Azure DevOps', 'Architecture', 'Mentoring'],
   },
 ];
 
 export const education = [
   {
     degree: 'Master of Engineering',
-    field: 'Computer Science',
-    institution: 'Faculty of Electrical Engineering University of Sarajevo',
-    period: '2018 - 2021',
-    description: 'Advanced studies in software engineering, system design, and modern development practices.',
+    field: 'Computer Science & Informatics',
+    institution: 'Faculty of Electrical Engineering, University of Sarajevo',
+    period: '2018 – 2021',
   },
   {
     degree: 'Bachelor of Engineering',
-    field: 'Computer Science',
-    institution: 'Faculty of Electrical Engineering University of Sarajevo',
-    period: '2014 - 2018',
-    description: 'Comprehensive foundation in computer science and software development.',
+    field: 'Computer Science & Informatics',
+    institution: 'Faculty of Electrical Engineering, University of Sarajevo',
+    period: '2014 – 2018',
   },
 ];
 
 export const certifications = [
-  { 
-    name: 'AP Lab Cloud Masters', 
-    issuer: 'AP Lab',
-    period: 'Oct 2019 - Feb 2020',
-    description: '16-week intensive training program covering the full software development lifecycle from planning and design to testing and deployment, with hands-on technical challenges and industry mentorship.'
-  },
-  { 
-    name: 'Microsoft Certified: Azure Fundamentals', 
+  {
+    name: 'Microsoft Certified: Azure Fundamentals',
     issuer: 'Microsoft',
-    description: 'Foundational certification demonstrating knowledge of cloud concepts and Azure services including compute, networking, storage, security, and governance.'
+    description: 'Foundational certification demonstrating knowledge of cloud concepts and Azure services including compute, networking, storage, security, and governance.',
+  },
+  {
+    name: 'AP Lab Cloud Masters',
+    issuer: 'AP Lab',
+    period: 'Oct 2019 – Feb 2020',
+    description: '16-week intensive training program covering the full software development lifecycle from planning and design to testing and deployment.',
   },
 ];
 
 export const projects = [
   {
-    title: 'CryptoDesk – Real-time Crypto Trading Platform',
-    description: 'Built a real-time trading platform integrating multiple crypto exchanges using .NET and Azure.',
-    achievements: [
-      'Integrated multiple exchanges with real-time synchronization',
-      'Designed bot-driven asset protection engine',
-      'Implemented asynchronous transaction processing',
-    ],
-    technologies: ['.NET', 'Azure', 'Azure Functions', 'Event-Driven', 'Trading Algorithms'],
-    impact: 'Platform stability led client to expand project scope significantly',
+    title: 'CryptoDesk – Real-time Trading Platform',
+    description: 'Architected a high-performance trading platform integrating multiple cryptocurrency exchanges with real-time data synchronization. Implemented bot-driven asset protection engine and asynchronous transaction processing for maximum reliability.',
+    impact: 'Platform stability and performance exceeded expectations, leading the client to significantly expand project scope and long-term partnership.',
+    technologies: ['.NET', 'Azure Functions', 'Event-Driven', 'Real-time'],
+    icon: '📈',
   },
   {
-    title: 'Karter.ba – Online Event Ticketing Platform',
-    description: 'Founding backend developer for Bosnian startup disrupting offline ticket sales.',
-    achievements: [
-      'Architected scalable .NET and PostgreSQL backend',
-      'Handled 5,000+ concurrent users post-launch',
-      'Built automated deployments with Docker',
-    ],
-    technologies: ['.NET', 'PostgreSQL', 'Docker', 'Azure DevOps', 'Payment Integration'],
-    impact: '70% revenue boost and 40% increase in event attendance',
+    title: 'Karter.ba – Event Ticketing Platform',
+    description: 'Founding backend developer for Bosnia\'s leading online ticketing startup. Architected scalable .NET and PostgreSQL infrastructure handling 5,000+ concurrent users. Built automated CI/CD pipelines with Docker for seamless deployments.',
+    impact: '70% revenue increase and 40% growth in event attendance for partner venues within first year of launch.',
+    technologies: ['.NET', 'PostgreSQL', 'Docker', 'Payment APIs'],
+    icon: '🎫',
   },
   {
-    title: 'Government Application Migration',
-    description: 'Led migration of government application from Azure cloud to on-premise infrastructure.',
-    achievements: [
-      'Migrated entire system from Azure to on-prem servers',
-      'Refactored codebase to remove cloud dependencies',
-      'Implemented new CI/CD workflows for on-prem',
-    ],
-    technologies: ['.NET', 'Angular', 'SQL Server', 'On-Prem', 'CI/CD'],
-    impact: 'Ensured operational continuity and improved data control for government stakeholders',
+    title: 'Government Cloud-to-OnPrem Migration',
+    description: 'Led critical migration of government application from Azure cloud to secure on-premise infrastructure. Refactored entire codebase to remove cloud dependencies while implementing new CI/CD workflows for internal deployment.',
+    impact: 'Ensured operational continuity, improved data sovereignty, and met strict government security compliance requirements.',
+    technologies: ['.NET', 'Angular', 'SQL Server', 'DevOps'],
+    icon: '🏛️',
   },
   {
-    title: 'Technical Writing – Medium Blog',
-    description: 'Started writing technical articles to share lessons from real-world engineering work.',
-    achievements: [
-      'Published comprehensive technical articles',
-      'Covered emerging topics: LLMs, Azure Functions, Docker',
-      'Articles referenced internally for onboarding',
-    ],
-    technologies: ['Technical Writing', 'Azure Functions', 'Docker', 'LLM', '.NET'],
-    impact: 'Articles referenced by peers for engineering guidance',
+    title: 'Technical Writing & Thought Leadership',
+    description: 'Publishing in-depth technical articles on Medium covering emerging technologies including LLMs, Azure Functions, Docker containerization, and .NET best practices. Content used internally for team onboarding and knowledge sharing.',
+    impact: 'Articles regularly referenced by engineering peers for technical guidance and architectural decisions.',
+    technologies: ['Writing', 'Azure', 'LLM', 'Docker'],
+    icon: '✍️',
   },
 ];
 
 export const services = [
   {
-    title: 'Legacy Modernization & Migration',
-    description: 'From assessment to execution powered by AI. Leading modernization of legacy monoliths into modern, scalable architectures.',
-    icon: '🚀',
+    title: 'Legacy Modernization',
+    description: 'Transform aging monolithic systems into clean, modern, and maintainable architectures. I lead full modernization cycles — from deep-dive assessments to hands-on execution — backed by 6+ years of real-world enterprise experience.',
+    tooltip: {
+      icon: '✨',
+      title: 'AI-Powered Modernization',
+      description: 'Accelerate migrations using AI-assisted analysis, dependency mapping, automated code suggestions, and structural refactoring. Reduce technical debt faster with higher accuracy.',
+    },
+    icon: '🔄',
   },
   {
-    title: 'SaaS & Startup Backend Development',
-    description: 'Founding-level engineering to take ideas from MVP to scalable platforms handling thousands of concurrent users.',
-    icon: '⚡',
+    title: 'Cloud & Backend Development',
+    description: 'End-to-end backend engineering for startups and enterprises. I build scalable, production-ready platforms capable of handling thousands of concurrent users on Azure cloud infrastructure. From MVPs to mission-critical distributed systems, I deliver robust architectures built for growth.',
+    icon: '☁️',
   },
   {
-    title: 'Technical Leadership & Consulting',
-    description: 'On-demand leadership to elevate teams through technical consulting, mentorship, and optimized workflows.',
-    icon: '🎯',
+    title: 'Product & Technical Consultancy',
+    description: 'Strategic guidance to accelerate your product and engineering outcomes. I partner with founders, CTOs, and product teams to translate business goals into technical roadmaps, conduct architecture reviews, optimize development workflows, and help you ship faster with confidence.',
+    icon: '💼',
+  },
+  {
+    title: 'AI-Guided Development Enablement',
+    description: 'Empower your engineering team to achieve next-level speed, clarity, and maintainability through AI-guided programming practices.',
+    badge: 'High-Impact, In-Demand',
+    wide: true,
+    features: [
+      'AI coding workflows and tools (ChatGPT, GitHub Copilot, custom assistants)',
+      'AI-safe code rules, templates, and standards',
+      'Repository structures optimized for AI code understanding',
+      'Migration from traditional workflows to AI-augmented development',
+      'Knowledge-extraction pipelines and codebase embeddings for advanced internal assistants',
+    ],
+    outcome: 'Teams that write cleaner code, understand complex systems faster, and ship features at a significantly higher velocity — with less cognitive load.',
+    icon: '🤖',
   },
 ];
 
-export const skillsData = [
-  {
-    category: 'Backend & Cloud',
-    skills: ['.NET Core/8', 'C#', 'Azure', 'Microservices', 'Azure Functions', 'REST APIs', 'PostgreSQL', 'SQL Server'],
-  },
-  {
-    category: 'Architecture & DevOps',
-    skills: ['System Design', 'Cloud Architecture', 'CI/CD', 'Docker', 'Azure DevOps', 'Git', 'Event-Driven Architecture'],
-  },
-  {
-    category: 'Data & Testing',
-    skills: ['Azure Data Factory', 'ETL Pipelines', 'Unit Testing', 'Integration Testing', 'Performance Testing'],
-  },
-  {
-    category: 'Frontend & Leadership',
-    skills: ['Angular', 'React', 'TypeScript', 'Team Leadership', 'Agile/Scrum', 'Technical Mentoring'],
-  },
-];
+export const skills = {
+  // Mountain Range - height represents expertise depth
+  peaks: [
+    {
+      name: 'Backend',
+      height: 100, // Tallest peak
+      years: 6,
+      items: ['C#', '.NET', 'ASP.NET Core', '.NET Framework', 'Entity Framework', 'REST APIs', 'Microservices', 'Unit Testing', 'Integration Testing',],
+      color: 'accent', // Orange
+    },
+    {
+      name: 'Azure Cloud',
+      height: 92,
+      years: 5,
+      items: ['Azure Functions', 'Service Bus', 'App Insights', 'Blob Storage', 'App Services', 'Container Apps', 'Key Vault', 'Azure DevOps'],
+      color: 'accent',
+    },
+    {
+      name: 'Databases',
+      height: 75,
+      years: 6,
+      items: ['SQL Server', 'PostgreSQL', 'MongoDB'],
+      color: 'violet',
+    },
+    {
+      name: 'DevOps',
+      height: 70,
+      years: 5,
+      items: ['CI/CD', 'Git', 'Azure DevOps', 'Docker', 'GitHub Actions'],
+      color: 'violet',
+    },
+    {
+      name: 'Architecture',
+      height: 65,
+      years: 4,
+      items: ['System Design', 'Clean Architecture', 'DDD', 'Event-Driven'],
+      color: 'violet',
+    },
+    {
+      name: 'Frontend',
+      height: 25, // Foothill
+      months: 6,
+      items: ['Angular', 'HTML', 'CSS', 'JavaScript', 'TypeScript'],
+      color: 'teal',
+    },
+  ],
+};
+
+// SEO-optimized meta content
+export const seoMeta = {
+  title: 'Dino Cosic | Senior Software Engineer & .NET Specialist',
+  description: 'Senior Software Engineer specializing in .NET, Azure, and legacy modernization. 6+ years helping enterprises transform monoliths into modern cloud-native architectures.',
+  keywords: 'Senior Software Engineer, .NET Developer, Azure Cloud Architect, Legacy Modernization, Microservices, Technical Lead, Bosnia, Remote Developer',
+};
