@@ -1,9 +1,9 @@
 import profileImage from '@/assets/413A8961.jpg';
 import logoImage from '@/assets/logo.png';
-import { EmailIcon, LinkedInIcon } from '@/components/ui';
+// Icons are now inline SVGs with gradients for consistent styling
 import { motion, useScroll } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { certifications, education, experiences, projects, services, skills } from './data';
+import { certifications, education, experiences, projects, skills } from './data';
 import './SinglePagePortfolio.css';
 
 /**
@@ -152,6 +152,25 @@ export function SinglePagePortfolio() {
 
             {/* Progress */}
             <motion.div className="scroll-progress" style={{ scaleX: scrollYProgress }} />
+
+            {/* Global SVG Gradient Definitions */}
+            <svg width="0" height="0" style={{ position: 'absolute' }}>
+                <defs>
+                    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#e85d04" />
+                        <stop offset="100%" stopColor="#7c3aed" />
+                    </linearGradient>
+                    <linearGradient id="iconGradientTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7c3aed" />
+                        <stop offset="100%" stopColor="#0d9488" />
+                    </linearGradient>
+                    <linearGradient id="iconGradientViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#e85d04" />
+                        <stop offset="50%" stopColor="#7c3aed" />
+                        <stop offset="100%" stopColor="#0d9488" />
+                    </linearGradient>
+                </defs>
+            </svg>
 
             {/* ═══════════════════════════════════════════ */}
             {/* PROLOGUE - Hero Section */}
@@ -539,7 +558,7 @@ export function SinglePagePortfolio() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
-                                    <svg className="education-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <svg className="education-icon" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                                         <path d="M6 12v5c3 3 9 3 12 0v-5" />
                                     </svg>
@@ -561,7 +580,7 @@ export function SinglePagePortfolio() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
-                                    <svg className="certification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                    <svg className="certification-icon" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradientTeal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                         <polyline points="22 4 12 14.01 9 11.01" />
                                     </svg>
@@ -594,30 +613,62 @@ export function SinglePagePortfolio() {
                     </p>
 
                     <div className="works-grid">
-                        {projects.map((project, index) => (
-                            <motion.div
-                                key={index}
-                                className="work-card"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: index * 0.1 }}
-                            >
-                                <h3 className="work-title">
-                                    <span className="work-icon">{project.icon}</span>
-                                    {project.title}
-                                </h3>
-                                <p className="work-description">{project.description}</p>
-                                <div className="work-impact">
-                                    <strong>Impact:</strong> {project.impact}
-                                </div>
-                                <div className="work-stack">
-                                    {project.technologies.map((tech) => (
-                                        <span key={tech} className="tech-tag">{tech}</span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
+                        {projects.map((project, index) => {
+                            // Project-specific SVG icons
+                            const projectIcons: { [key: string]: JSX.Element } = {
+                                '📈': (
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M3 3v18h18" />
+                                        <path d="M18 9l-5 5-4-4-6 6" />
+                                        <path d="M14 9h4v4" />
+                                    </svg>
+                                ),
+                                '🎫': (
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M2 9a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3v0a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v0a3 3 0 0 1 3-3v0a3 3 0 0 1-3-3z" />
+                                        <path d="M9 6v12" strokeDasharray="2 2" />
+                                    </svg>
+                                ),
+                                '🏛️': (
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M3 21h18M4 21V10M20 21V10M12 3L2 9h20L12 3z" />
+                                        <path d="M8 21v-6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v6" />
+                                    </svg>
+                                ),
+                                '✍️': (
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                                        <path d="M2 2l7.586 7.586" />
+                                        <circle cx="11" cy="11" r="2" />
+                                    </svg>
+                                ),
+                            };
+                            return (
+                                <motion.div
+                                    key={index}
+                                    className="work-card"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                                >
+                                    <h3 className="work-title">
+                                        <span className="work-icon">{projectIcons[project.icon] || project.icon}</span>
+                                        {project.title}
+                                    </h3>
+                                    <p className="work-description">{project.description}</p>
+                                    <div className="work-impact">
+                                        <strong>Impact:</strong> {project.impact}
+                                    </div>
+                                    <div className="work-stack">
+                                        {project.technologies.map((tech) => (
+                                            <span key={tech} className="tech-tag">{tech}</span>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </motion.div>
             </section>
@@ -640,46 +691,122 @@ export function SinglePagePortfolio() {
                     </p>
 
                     <div className="services-grid">
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                className={`service-card ${service.badge ? 'featured' : ''} ${service.wide ? 'wide' : ''}`}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                            >
-                                <div className="service-header">
-                                    <div className="service-icon">{service.icon}</div>
-                                    {service.badge && <span className="service-badge">{service.badge}</span>}
-                                    {service.tooltip && (
-                                        <div className="service-tooltip-trigger">
-                                            <span className="tooltip-icon">{service.tooltip.icon}</span>
-                                            <div className="service-tooltip">
-                                                <strong>{service.tooltip.title}</strong>
-                                                <p>{service.tooltip.description}</p>
-                                            </div>
-                                        </div>
-                                    )}
+                        {/* Legacy Modernization */}
+                        <motion.div
+                            className="service-card"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0 }}
+                        >
+                            <div className="service-header">
+                                <div className="service-icon">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                                        <path d="M21 3v5h-5" />
+                                        <path d="M12 7v5l3 3" />
+                                    </svg>
                                 </div>
-                                <h3 className="service-title">{service.title}</h3>
-                                <p className="service-description">{service.description}</p>
-
-                                {service.features && (
-                                    <ul className="service-features">
-                                        {service.features.map((feature, i) => (
-                                            <li key={i}>{feature}</li>
-                                        ))}
-                                    </ul>
-                                )}
-
-                                {service.outcome && (
-                                    <div className="service-outcome">
-                                        <strong>The result:</strong> {service.outcome}
+                                <div className="service-tooltip-trigger">
+                                    <span className="tooltip-icon">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
+                                            <path d="M5 19l1 3 3-1" />
+                                            <path d="M19 5l-1-3-3 1" />
+                                        </svg>
+                                    </span>
+                                    <div className="service-tooltip">
+                                        <strong>AI-Powered Modernization</strong>
+                                        <p>Accelerate migrations using AI-assisted analysis, dependency mapping, automated code suggestions, and structural refactoring. Reduce technical debt faster with higher accuracy.</p>
                                     </div>
-                                )}
-                            </motion.div>
-                        ))}
+                                </div>
+                            </div>
+                            <h3 className="service-title">Legacy Modernization</h3>
+                            <p className="service-description">Transform aging monolithic systems into clean, modern, and maintainable architectures. I lead full modernization cycles — from deep-dive assessments to hands-on execution — backed by 6+ years of real-world enterprise experience.</p>
+                        </motion.div>
+
+                        {/* Cloud & Backend Development */}
+                        <motion.div
+                            className="service-card"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                        >
+                            <div className="service-header">
+                                <div className="service-icon">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M17.5 19H9a7 7 0 116.71-9h1.79a4.5 4.5 0 110 9z" />
+                                        <path d="M12 12v4" />
+                                        <path d="M12 20v1" />
+                                        <path d="M8 12v8" />
+                                        <path d="M16 12v8" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 className="service-title">Cloud & Backend Development</h3>
+                            <p className="service-description">End-to-end backend engineering for startups and enterprises. I build scalable, production-ready platforms capable of handling thousands of concurrent users on Azure cloud infrastructure. From MVPs to mission-critical distributed systems, I deliver robust architectures built for growth.</p>
+                        </motion.div>
+
+                        {/* Product & Technical Consultancy */}
+                        <motion.div
+                            className="service-card"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <div className="service-header">
+                                <div className="service-icon">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                                        <circle cx="12" cy="12" r="8" strokeDasharray="4 2" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 className="service-title">Product & Technical Consultancy</h3>
+                            <p className="service-description">Strategic guidance to accelerate your product and engineering outcomes. I partner with founders, CTOs, and product teams to translate business goals into technical roadmaps, conduct architecture reviews, optimize development workflows, and help you ship faster with confidence.</p>
+                        </motion.div>
+
+                        {/* AI-Guided Development Enablement */}
+                        <motion.div
+                            className="service-card featured wide"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                            <div className="service-header">
+                                <div className="service-icon">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradientTeal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        {/* Brain shape */}
+                                        <path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0 1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 5.28.5" />
+                                        <path d="M12 4.5a2.5 2.5 0 0 1 4.96-.46 2.5 2.5 0 0 1 1.98 3 2.5 2.5 0 0 1-1.32 4.24 3 3 0 0 1-.34 5.58 2.5 2.5 0 0 1-5.28.5" />
+                                        {/* Circuit nodes */}
+                                        <circle cx="12" cy="8" r="1" fill="url(#iconGradientTeal)" />
+                                        <circle cx="9" cy="13" r="1" fill="url(#iconGradientTeal)" />
+                                        <circle cx="15" cy="13" r="1" fill="url(#iconGradientTeal)" />
+                                        <path d="M12 8v2M9 13l3-3 3 3" />
+                                    </svg>
+                                </div>
+                                <span className="service-badge">High-Impact, In-Demand</span>
+                            </div>
+                            <h3 className="service-title">AI-Guided Development Enablement</h3>
+                            <p className="service-description">Empower your engineering team to achieve next-level speed, clarity, and maintainability through AI-guided programming practices.</p>
+
+                            <ul className="service-features">
+                                <li>AI coding workflows and tools (ChatGPT, GitHub Copilot, custom assistants)</li>
+                                <li>AI-safe code rules, templates, and standards</li>
+                                <li>Repository structures optimized for AI code understanding</li>
+                                <li>Migration from traditional workflows to AI-augmented development</li>
+                                <li>Knowledge-extraction pipelines and codebase embeddings for advanced internal assistants</li>
+                            </ul>
+
+                            <div className="service-outcome">
+                                <strong>The result:</strong> Teams that write cleaner code, understand complex systems faster, and ship features at a significantly higher velocity — with less cognitive load.
+                            </div>
+                        </motion.div>
                     </div>
                 </motion.div>
             </section>
@@ -706,22 +833,30 @@ export function SinglePagePortfolio() {
                     <div className="contact-links">
                         <a href="mailto:dino.cosic95@gmail.com" className="contact-link" target="_blank" rel="noopener noreferrer">
                             <div className="contact-link-icon">
-                                <EmailIcon size={24} />
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="M22 6l-10 7L2 6" />
+                                </svg>
                             </div>
                             <span className="contact-link-label">Email</span>
                         </a>
 
                         <a href="https://www.linkedin.com/in/dino-cosic" className="contact-link" target="_blank" rel="noopener noreferrer">
                             <div className="contact-link-icon">
-                                <LinkedInIcon size={24} />
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect x="2" y="9" width="4" height="12" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
                             </div>
                             <span className="contact-link-label">LinkedIn</span>
                         </a>
 
                         <a href="https://medium.com/@dino.cosic" className="contact-link" target="_blank" rel="noopener noreferrer">
                             <div className="contact-link-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M4 4h16v16H4z" />
+                                    <path d="M8 8v8M12 6v12M16 10v4" />
                                 </svg>
                             </div>
                             <span className="contact-link-label">Medium</span>
@@ -729,8 +864,8 @@ export function SinglePagePortfolio() {
 
                         <a href="https://x.com/Dino_Codes" className="contact-link" target="_blank" rel="noopener noreferrer">
                             <div className="contact-link-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#iconGradient)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M4 4l16 16M20 4L4 20" />
                                 </svg>
                             </div>
                             <span className="contact-link-label">X</span>

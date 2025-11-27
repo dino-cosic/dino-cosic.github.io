@@ -7,7 +7,7 @@ export const experiences = [
     role: 'Senior Software Engineer',
     period: '2024 – Present',
     summary: 'Spearheading the modernization of legacy monolith systems into scalable cloud-native microservices using .NET 8, Azure Functions, and Service Bus. Reduced technical debt while accelerating MVP delivery for enterprise clients. Actively mentoring junior engineers in backend development and cloud architecture best practices.',
-    technologies: ['.NET 8', 'Azure', 'Microservices', 'Service Bus', 'C#'],
+    technologies: ['C#', '.NET', 'Azure', 'Microservices', 'Service Bus', 'Azure Functions', 'LaunchDarkly', 'SendGrid', 'Twilio' ],
   },
   {
     company: 'HTEC Group',

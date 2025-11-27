@@ -1369,8 +1369,19 @@ body {
 }
 
 .work-icon {
-    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(232, 93, 4, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+    border-radius: 10px;
     flex-shrink: 0;
+}
+
+.work-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .work-description {
@@ -1458,8 +1469,26 @@ body {
 }
 
 .service-icon {
-    font-size: 40px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(232, 93, 4, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+    border-radius: 14px;
+    transition: all var(--transition-medium);
+}
+
+.service-icon svg {
+    transition: transform var(--transition-fast);
+}
+
+.service-card:hover .service-icon {
+    background: linear-gradient(135deg, rgba(232, 93, 4, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+}
+
+.service-card:hover .service-icon svg {
+    transform: scale(1.1);
 }
 
 .service-badge {
@@ -1650,10 +1679,12 @@ body {
 }
 
 .education-icon {
-    width: 44px;
-    height: 44px;
+    width: 52px;
+    height: 52px;
     margin-bottom: 20px;
-    color: var(--color-teal);
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(232, 93, 4, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+    border-radius: 14px;
 }
 
 .education-degree {
@@ -1714,10 +1745,12 @@ body {
 }
 
 .certification-icon {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     margin-bottom: 12px;
-    color: var(--color-violet);
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(13, 148, 136, 0.08) 100%);
+    border-radius: 12px;
 }
 
 .certification-name {
@@ -2119,7 +2152,13 @@ body {
     }
 
     .work-icon {
-        font-size: 24px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .work-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     .scroll-hint {
