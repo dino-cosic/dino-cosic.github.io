@@ -6,14 +6,14 @@ export const experiences = [
     company: 'Symphony',
     role: 'Senior Software Engineer',
     period: '2024 – Present',
-    summary: 'Spearheading the modernization of legacy monolith systems into scalable cloud-native microservices using .NET 8, Azure Functions, and Service Bus. Reduced technical debt while accelerating MVP delivery for enterprise clients. Actively mentoring junior engineers in backend development and cloud architecture best practices.',
-    technologies: ['C#', '.NET', 'Azure', 'Microservices', 'Service Bus', 'Azure Functions', 'LaunchDarkly', 'SendGrid', 'Twilio' ],
+    summary: 'Delivered the modernization of a large-scale .NET platform to a cloud-native architecture on Azure, improving deployment speed and system reliability. Owned key service migrations, stabilized critical microservices mid-project, and reduced cross-team dependencies. Partnered with product and business stakeholders to align technical delivery with business goals. Mentored engineers in DDD, Clean Architecture, and scalable cloud patterns.',
+    technologies: ['C#', '.NET', 'Azure', 'Microservices', 'Service Bus', 'Azure Functions', 'LaunchDarkly', 'SendGrid', 'Twilio'],
   },
   {
     company: 'HTEC Group',
     role: 'Senior Software Engineer',
     period: '2022 – 2024',
-    summary: 'Led enterprise CMS migration to microservices architecture, cutting maintenance overhead by 25%. Achieved 99.9% CI/CD pipeline success rate across 50+ production releases. Engineered custom Azure Data Factory testing framework that reduced testing effort by 50%, adopted company-wide.',
+    summary: 'Led backend development and DevOps for a legacy-to-microservices transformation on Azure, delivering a scalable, production-ready platform. Built automated testing for cloud data pipelines, improving release confidence and reducing regression risk. Shaped system architecture, streamlined CI/CD workflows, and collaborated cross-functionally to keep technical and business goals aligned.',
     technologies: ['.NET', 'Azure', 'Docker', 'CI/CD', 'Azure Data Factory'],
   },
   {

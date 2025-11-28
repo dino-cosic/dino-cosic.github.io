@@ -347,7 +347,6 @@ export function SinglePagePortfolio() {
                                     width="400"
                                     height="400"
                                     loading="eager"
-                                    fetchPriority="high"
                                 />
                             </div>
 
