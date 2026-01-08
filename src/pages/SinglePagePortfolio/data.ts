@@ -4,7 +4,7 @@
 import { calculateYearsOfExperience } from '@/utils';
 
 // Career start constants
-const CAREER_START_YEAR = 2018;
+const CAREER_START_YEAR = 2019;
 const CAREER_START_MONTH = 1; // January
 
 /**
@@ -149,35 +149,35 @@ export const skills = {
     {
       name: 'Backend',
       height: 100, // Tallest peak
-      years: calculateYearsOfExperience(2018, 1), // Started backend development in 2018
+      years: calculateYearsOfExperience(2019, 1), // Started backend development in 2019
       items: ['C#', '.NET', 'ASP.NET Core', '.NET Framework', 'Entity Framework', 'REST APIs', 'Microservices', 'Unit Testing', 'Integration Testing',],
       color: 'accent', // Orange
     },
     {
       name: 'Azure Cloud',
       height: 92,
-      years: calculateYearsOfExperience(2018, 10), // Started Azure in October 2018
+      years: calculateYearsOfExperience(2019, 10), // Started Azure in October 2019
       items: ['Azure Functions', 'Service Bus', 'App Insights', 'Blob Storage', 'App Services', 'Container Apps', 'Key Vault', 'Azure DevOps'],
       color: 'accent',
     },
     {
       name: 'Databases',
       height: 75,
-      years: calculateYearsOfExperience(2018, 6), // Started databases in 2018
+      years: calculateYearsOfExperience(2019, 6), // Started databases in 2019
       items: ['SQL Server', 'PostgreSQL', 'MongoDB'],
       color: 'violet',
     },
     {
       name: 'DevOps',
       height: 70,
-      years: calculateYearsOfExperience(2020, 10), // Started DevOps in October 2019
+      years: calculateYearsOfExperience(2021, 10), // Started DevOps in October 2020
       items: ['CI/CD', 'Git', 'Azure DevOps', 'Docker', 'GitHub Actions'],
       color: 'violet',
     },
     {
       name: 'Architecture',
       height: 65,
-      years: calculateYearsOfExperience(2020, 1), // Started architecture focus in 2020
+      years: calculateYearsOfExperience(2021, 1), // Started architecture focus in 2021
       items: ['System Design', 'Clean Architecture', 'DDD', 'Event-Driven'],
       color: 'violet',
     },
