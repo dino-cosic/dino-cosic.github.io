@@ -14,13 +14,18 @@
 }
 .bar.is-scrolled { border-bottom-color: var(--rule); }
 
-.bar-name {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
-  text-decoration: none;
+/* The mark: one line that loops once, then settles into a D, ending on the signal. */
+.bar-mark { display: block; margin-left: -4px; padding: 4px; }
+.bar-mark svg { display: block; width: 36px; height: 36px; }
+.bar-mark path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
+.bar-mark circle { fill: var(--signal); transition: transform 0.25s; transform-origin: 12px 14px; }
+.bar-mark:hover circle { transform: scale(1.25); }
 
 .bar-toggle {
   font: 500 0.95rem var(--display);
