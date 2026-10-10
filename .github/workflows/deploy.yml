@@ -22,17 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+      - name: Assemble site
+        run: |
+          mkdir dist
+          cp -r index.html 404.html robots.txt sitemap.xml css js assets dist/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

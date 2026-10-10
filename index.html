@@ -1,76 +1,577 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JBLGCJDQLL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-JBLGCJDQLL');
   </script>
 
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dino Cosic – Senior Software Engineer and Technical Lead</title>
+  <meta name="description" content="Senior Software Engineer and Technical Lead who modernizes legacy enterprise platforms on .NET and Azure, owns delivery end to end, and uses spec-driven, AI-assisted engineering to ship faster at the same quality bar.">
+  <meta name="author" content="Dino Cosic">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ecede9">
+  <meta name="google-site-verification" content="9rrFKu-za7_JffM9mlg_sImdzfKeu_5OdozHmUFJAsU">
+  <link rel="canonical" href="https://dino-cosic.github.io/">
 
-  <!-- Preconnect to external domains for faster resource loading -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://api.rss2json.com" />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dino-cosic.github.io/">
+  <meta property="og:title" content="Dino Cosic – Senior Software Engineer and Technical Lead">
+  <meta property="og:description" content="I untangle systems that outgrew their original design. Legacy modernization, .NET and Azure, and AI-assisted engineering that holds up in production.">
+  <meta property="og:image" content="https://dino-cosic.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dino Cosic – Senior Software Engineer and Technical Lead">
+  <meta name="twitter:description" content="I untangle systems that outgrew their original design.">
+  <meta name="twitter:image" content="https://dino-cosic.github.io/assets/og.png">
 
-  <!-- Preload critical fonts -->
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
-    media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" />
-  </noscript>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 
-  <!-- Security Headers (only ones that work via meta tags) -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/site.css">
 
-  <!-- Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https: https://www.google-analytics.com https://analytics.google.com;" />
+  <!-- Decide on the WebGL hero before first paint so the SVG fallback never flashes. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        var c = document.createElement('canvas');
+        var gl = c.getContext('webgl2') || c.getContext('webgl');
+        if (gl) {
+          root.classList.add('gl');
+          var ext = gl.getExtension('WEBGL_lose_context');
+          if (ext) ext.loseContext();
+        }
+      } catch (e) { /* fallback stays on */ }
+      if (still) root.classList.add('still');
+    })();
+  </script>
 
-  <!-- Primary Meta Tags -->
-  <title>Dino Cosic - Senior Software Engineer | Portfolio</title>
-  <meta name="title" content="Dino Cosic - Senior Software Engineer | Portfolio" />
-  <meta name="description"
-    content="Senior Software Engineer with 7+ years of experience building exceptional digital experiences. Explore my portfolio of projects, experience, and expertise." />
-  <meta name="keywords" content="Senior Software Engineer, Backend Developer, .NET, C#, Web Development, Portfolio" />
-  <meta name="author" content="Dino Cosic" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Google Search Console Verification -->
-  <meta name="google-site-verification" content="9rrFKu-za7_JffM9mlg_sImdzfKeu_5OdozHmUFJAsU" />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Dino Cosic - Senior Software Engineer | Portfolio" />
-  <meta property="og:description"
-    content="Senior Software Engineer with 7+ years of experience building exceptional digital experiences." />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:title" content="Dino Cosic - Senior Software Engineer | Portfolio" />
-  <meta property="twitter:description"
-    content="Senior Software Engineer with 7+ years of experience building exceptional digital experiences." />
-
-  <!-- Theme Color -->
-  <meta name="theme-color" content="#000000" />
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" } }
+  </script>
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
+  <a class="skip" href="#main">Skip to content</a>
 
+  <header class="bar" id="top">
+    <a class="bar-name" href="#top">Dino Cosic</a>
+    <button class="bar-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="bar-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#ai">AI</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="bar-scrim" aria-hidden="true"></div>
+
+  <div class="thread" aria-hidden="true"><span class="thread-fill"></span></div>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">I untangle systems that outgrew their original design.</h1>
+        <p class="hero-lede">Senior Software Engineer and Technical Lead. I design, build, and modernize enterprise and multi-tenant SaaS platforms.</p>
+        <p class="hero-actions">
+          <a class="btn btn-primary" href="#work">See the work</a>
+          <a class="btn" href="mailto:dino.cosic95@gmail.com?subject=R%C3%A9sum%C3%A9%20request&amp;body=Hi%20Dino%2C%0A%0ACould%20you%20send%20me%20your%20r%C3%A9sum%C3%A9%3F%20A%20little%20about%20the%20role%20or%20project%3A%0A%0A">Request résumé</a>
+        </p>
+        <p class="hero-note">Based in Sarajevo. Open to remote, hybrid, or relocation across the US and EU.</p>
+        <dl class="facts">
+          <div><dt>years building production systems</dt><dd><span data-years>7</span>+</dd></div>
+          <div><dt>students taught and mentored</dt><dd>350+</dd></div>
+          <div><dt>startups joined as founding engineer</dt><dd>2</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-art" id="hero-art">
+        <svg class="portrait" id="portrait" viewBox="0 0 640 838" data-vb role="img" aria-label="One-line drawing of Dino Cosic, smiling with arms crossed">
+          <g id="strokes">
+<!-- portrait:start 640 838 -->
+<path d="M282.0 113.0 L285.0 111.3 L291.0 110.1 L297.0 111.4 L300.0 115.0" pathLength="1"/>
+<path d="M519.0 710.0 L529.0 711.0" pathLength="1"/>
+<path d="M519.0 710.0 L516.0 711.9 L509.0 712.9 L506.0 712.0" pathLength="1"/>
+<path d="M188.0 473.0 L183.1 470.9 L171.1 457.0 L159.3 440.0 L158.0 435.0" pathLength="1"/>
+<path d="M279.0 174.0 L275.0 169.1 L271.0 167.0" pathLength="1"/>
+<path d="M153.0 212.0 L153.4 215.0 L155.0 216.7 L157.0 217.3 L159.0 216.0" pathLength="1"/>
+<path d="M188.0 222.0 L188.4 227.0 L192.1 233.0 L195.0 235.0" pathLength="1"/>
+<path d="M301.0 193.0 L299.0 193.9 L292.0 192.9 L277.0 188.3 L273.0 188.0" pathLength="1"/>
+<path d="M290.0 208.0 L287.0 209.9 L283.0 209.0" pathLength="1"/>
+<path d="M16.0 555.0 L12.1 530.0 L12.0 514.0 L14.1 497.0 L20.9 464.0 L22.0 441.0" pathLength="1"/>
+<path d="M527.0 688.0 L529.0 678.0" pathLength="1"/>
+<path d="M339.0 430.0 L343.9 426.9 L348.0 422.0 L354.0 417.1 L361.0 413.0" pathLength="1"/>
+<path d="M301.0 116.0 L308.0 119.1 L314.2 126.0 L314.9 133.0 L312.0 137.0" pathLength="1"/>
+<path d="M188.0 279.0 L187.4 281.0 L190.8 291.0 L197.1 300.0 L201.0 304.0 L210.0 311.9 L236.0 331.1 L255.0 346.9 L267.0 355.1 L271.0 359.0" pathLength="1"/>
+<path d="M556.0 713.0 L564.0 714.3 L573.0 717.8 L583.0 723.1 L584.6 725.0 L585.0 727.0" pathLength="1"/>
+<path d="M273.0 182.0 L276.9 180.7 L279.0 176.0" pathLength="1"/>
+<path d="M276.0 246.0 L282.0 241.0 L286.7 235.0 L293.7 220.0 L294.0 217.0" pathLength="1"/>
+<path d="M228.0 384.0 L230.1 389.0 L237.9 397.0 L259.1 422.0 L272.9 436.0 L281.7 447.0 L298.3 474.0 L305.7 484.0 L323.7 512.0 L333.2 530.0 L340.7 549.0 L353.7 592.0 L358.0 609.0" pathLength="1"/>
+<path d="M26.0 569.0 L19.9 558.0 L17.0 556.0" pathLength="1"/>
+<path d="M115.0 547.0 L117.1 549.7 L138.0 563.7 L192.0 594.0" pathLength="1"/>
+<path d="M270.0 360.0 L260.4 370.0 L254.0 389.0" pathLength="1"/>
+<path d="M195.0 575.0 L190.1 571.0 L170.0 547.0" pathLength="1"/>
+<path d="M205.0 268.0 L205.6 266.0 L204.1 258.0 L205.0 255.0" pathLength="1"/>
+<path d="M205.0 268.0 L201.0 266.7 L192.0 259.9 L182.0 250.1 L178.0 249.0" pathLength="1"/>
+<path d="M205.0 268.0 L209.0 270.9 L212.6 269.9 L213.0 262.0 L212.0 259.0" pathLength="1"/>
+<path d="M150.0 178.0 L151.6 175.0 L150.1 167.0 L149.1 147.0 L150.3 138.0 L155.4 125.0 L150.1 103.0 L150.1 92.0 L151.8 86.0 L158.0 76.0 L164.0 70.1 L174.0 63.8 L181.0 61.3 L192.0 59.1 L202.0 58.9 L205.0 58.0" pathLength="1"/>
+<path d="M150.0 189.0 L152.6 192.0 L153.0 198.0" pathLength="1"/>
+<path d="M320.0 381.0 L318.1 378.0 L318.1 369.0 L320.9 354.0 L322.1 343.0 L324.0 338.0" pathLength="1"/>
+<path d="M261.0 668.0 L262.9 671.0 L263.0 686.0 L260.9 699.0 L255.2 717.0 L252.7 722.0 L249.0 725.0" pathLength="1"/>
+<path d="M350.0 802.0 L347.0 804.6 L342.0 805.9 L339.0 805.9 L337.0 805.0" pathLength="1"/>
+<path d="M196.0 576.0 L197.3 580.0 L204.0 589.0" pathLength="1"/>
+<path d="M247.0 251.0 L245.0 252.6 L241.1 253.4 L240.3 256.0 L246.0 262.9 L252.7 266.1 L253.7 270.0 L250.9 275.0 L248.0 276.9 L243.0 276.7 L239.0 274.0 L222.3 254.0 L217.3 245.0 L215.1 237.0 L215.4 231.0 L219.0 228.3 L223.0 228.0" pathLength="1"/>
+<path d="M367.0 327.0 L364.0 326.2 L361.0 324.0 L334.0 297.0 L331.0 293.0" pathLength="1"/>
+<path d="M457.0 636.0 L459.9 634.7 L461.2 633.0 L461.9 630.0 L461.0 628.0" pathLength="1"/>
+<path d="M484.0 597.0 L474.0 594.0" pathLength="1"/>
+<path d="M301.0 436.0 L296.7 413.0 L292.2 402.0 L288.0 397.0" pathLength="1"/>
+<path d="M24.0 440.0 L26.9 442.0 L33.1 451.0 L49.0 466.7 L63.0 475.7 L91.0 490.3 L106.0 500.3 L140.0 523.3 L169.0 547.0" pathLength="1"/>
+<path d="M217.0 138.0 L219.0 137.1 L226.0 137.0" pathLength="1"/>
+<path d="M259.0 209.0 L274.0 203.1 L280.0 203.1 L282.0 204.0" pathLength="1"/>
+<path d="M513.0 448.0 L512.0 451.0 L513.0 455.0" pathLength="1"/>
+<path d="M367.0 646.0 L365.0 646.6 L348.0 644.4 L346.0 645.0" pathLength="1"/>
+<path d="M177.0 248.0 L173.0 237.0" pathLength="1"/>
+<path d="M204.0 488.0 L204.6 486.0 L203.7 483.0 L198.2 470.0 L187.7 449.0 L171.8 423.0 L171.0 417.0" pathLength="1"/>
+<path d="M546.0 470.0 L537.3 452.0 L534.7 442.0 L530.2 430.0 L520.9 416.0 L514.0 410.0" pathLength="1"/>
+<path d="M329.0 807.0 L326.9 809.6 L319.0 812.0" pathLength="1"/>
+<path d="M329.0 149.0 L326.0 147.7 L321.0 143.3 L314.0 140.6 L311.0 138.0" pathLength="1"/>
+<path d="M211.0 214.0 L203.4 223.0 L203.0 229.0 L204.8 234.0 L211.7 245.0 L213.0 251.0 L212.9 256.0 L212.0 258.0" pathLength="1"/>
+<path d="M296.0 184.0 L305.0 185.1 L314.0 187.8 L317.9 190.1 L320.7 195.0 L320.9 203.0 L318.0 218.0 L318.1 236.0 L320.0 240.0" pathLength="1"/>
+<path d="M252.0 235.0 L254.0 236.6 L256.0 236.9 L265.0 234.7 L267.9 232.9 L270.0 230.0" pathLength="1"/>
+<path d="M283.0 204.0 L287.0 204.4 L290.0 207.0" pathLength="1"/>
+<path d="M556.0 599.0 L551.8 603.0 L541.3 628.0 L532.3 657.0 L531.0 665.0" pathLength="1"/>
+<path d="M281.0 113.0 L277.0 113.3 L269.0 116.3 L265.0 118.3 L262.0 121.0" pathLength="1"/>
+<path d="M333.0 225.0 L330.4 227.1 L326.7 235.0 L322.0 240.0" pathLength="1"/>
+<path d="M189.0 157.0 L192.0 158.9 L196.0 158.0" pathLength="1"/>
+<path d="M287.0 397.0 L283.0 396.9 L268.0 393.1 L264.0 393.0" pathLength="1"/>
+<path d="M263.0 394.0 L268.1 402.0 L281.9 417.0 L291.1 430.0 L297.0 435.9 L300.0 437.0" pathLength="1"/>
+<path d="M340.0 134.0 L341.9 143.0 L342.1 153.0 L345.9 173.0 L345.9 179.0 L341.9 188.0 L339.0 190.2 L336.0 191.0" pathLength="1"/>
+<path d="M534.0 676.0 L537.0 667.0" pathLength="1"/>
+<path d="M165.0 231.0 L159.0 231.6 L155.0 230.7 L152.0 228.9 L143.3 220.0 L140.0 212.0" pathLength="1"/>
+<path d="M209.0 567.0 L209.4 564.0 L211.0 562.1 L213.0 561.1 L216.0 561.1 L219.0 562.3 L231.0 570.6 L233.0 571.0" pathLength="1"/>
+<path d="M169.0 173.0 L174.0 169.9 L177.0 166.0" pathLength="1"/>
+<path d="M385.0 376.0 L381.7 382.0 L378.0 386.0" pathLength="1"/>
+<path d="M206.0 58.0 L208.0 58.9 L214.0 59.0 L220.0 57.7 L226.0 55.6 L240.0 48.3 L253.0 45.1 L260.0 45.1 L269.0 46.9 L275.0 47.1 L286.0 50.4 L294.9 60.0 L305.2 76.0 L307.7 82.0 L312.3 101.0 L323.8 128.0 L327.0 132.0" pathLength="1"/>
+<path d="M324.0 294.0 L324.1 303.0 L326.0 321.0" pathLength="1"/>
+<path d="M223.0 627.0 L220.7 621.0 L212.9 611.0 L203.1 601.9 L201.0 599.0" pathLength="1"/>
+<path d="M73.0 673.0 L69.7 659.0 L64.0 643.0" pathLength="1"/>
+<path d="M149.0 189.0 L143.0 191.1 L138.0 198.0" pathLength="1"/>
+<path d="M371.0 744.0 L370.0 741.0 L371.0 731.0 L370.9 714.0 L365.7 687.0 L357.2 662.0 L353.7 656.0 L347.3 648.0 L346.0 645.0" pathLength="1"/>
+<path d="M260.0 668.0 L258.3 671.0 L257.1 676.0 L253.9 695.0 L248.1 718.0 L248.1 723.0 L249.0 725.0" pathLength="1"/>
+<path d="M362.0 414.0 L356.3 427.0 L353.1 440.0 L353.0 466.0 L354.9 474.0 L355.1 484.0 L362.3 517.0 L376.7 558.0 L385.9 592.0 L388.9 609.0 L389.1 614.0 L395.9 645.0 L396.0 650.0" pathLength="1"/>
+<path d="M358.0 802.0 L369.0 797.6 L384.0 789.7 L423.0 763.7 L442.0 749.3 L447.0 747.0" pathLength="1"/>
+<path d="M281.0 648.0 L271.0 649.0" pathLength="1"/>
+<path d="M172.0 150.0 L176.0 148.7 L185.0 141.3 L189.0 139.3 L196.0 138.0 L215.0 138.0" pathLength="1"/>
+<path d="M259.0 657.0 L260.0 667.0" pathLength="1"/>
+<path d="M339.0 133.0 L335.3 135.1 L332.6 142.0 L331.0 144.0" pathLength="1"/>
+<path d="M348.0 395.0 L345.7 409.0 L342.6 417.0 L340.4 420.0 L338.0 429.0" pathLength="1"/>
+<path d="M461.0 628.0 L466.3 604.0 L471.0 594.0" pathLength="1"/>
+<path d="M461.0 628.0 L457.4 631.0 L456.0 635.0" pathLength="1"/>
+<path d="M271.0 576.0 L270.2 571.0 L259.7 551.0 L233.3 515.0 L217.3 491.0 L187.7 433.0 L181.9 425.0 L172.0 416.0" pathLength="1"/>
+<path d="M100.0 741.0 L98.1 744.0 L96.9 752.0 L93.7 764.0 L86.7 782.0 L75.8 802.0 L64.2 833.0 L62.9 834.6 L61.0 834.9 L58.4 833.0 L46.3 798.0 L45.1 792.0 L44.9 776.0 L41.0 749.0 L41.1 742.0 L42.0 738.0 L41.0 726.0" pathLength="1"/>
+<path d="M228.0 224.0 L248.0 215.3 L253.0 214.1 L258.0 214.0" pathLength="1"/>
+<path d="M132.0 751.0 L130.7 764.0 L113.3 819.0 L110.0 835.0" pathLength="1"/>
+<path d="M145.0 625.0 L175.0 620.1 L182.0 621.0" pathLength="1"/>
+<path d="M270.0 167.0 L266.1 163.0 L261.3 156.0 L257.3 147.0 L256.1 138.0 L259.0 128.0" pathLength="1"/>
+<path d="M479.0 366.0 L484.0 369.1 L487.9 373.0 L510.9 405.0 L513.0 409.0" pathLength="1"/>
+<path d="M247.0 650.0 L235.0 649.0 L231.0 650.3 L221.1 660.0 L214.9 668.0 L208.0 674.9 L195.0 684.7 L178.0 692.3 L175.4 695.0 L175.4 697.0 L177.0 698.6 L180.0 699.7 L185.0 700.0 L196.0 697.7 L200.0 695.7 L203.9 692.0 L215.1 678.0 L225.0 668.1 L235.0 660.3 L245.9 654.7 L248.0 652.0" pathLength="1"/>
+<path d="M205.0 590.0 L214.0 594.3 L232.0 607.1 L266.9 641.0 L270.0 648.0" pathLength="1"/>
+<path d="M182.0 164.0 L189.0 169.0" pathLength="1"/>
+<path d="M512.0 410.0 L511.4 412.0 L514.9 428.0 L515.0 440.0" pathLength="1"/>
+<path d="M141.0 211.0 L146.0 210.9 L148.0 210.0" pathLength="1"/>
+<path d="M528.0 667.0 L527.1 669.0 L527.1 674.0 L529.0 677.0" pathLength="1"/>
+<path d="M297.0 644.0 L270.9 605.0 L257.0 591.1 L248.0 584.9 L234.0 572.0" pathLength="1"/>
+<path d="M351.0 779.0 L345.0 778.9 L325.0 776.0 L309.0 778.1 L289.0 781.9 L277.0 781.9 L273.0 780.6 L267.0 776.9 L260.1 770.0 L259.1 768.0 L260.1 766.3 L267.0 761.9 L273.0 756.1 L277.0 754.1 L306.0 755.0 L332.0 751.0 L339.0 751.1 L344.0 753.3 L347.9 757.0 L350.4 763.0 L353.0 766.0" pathLength="1"/>
+<path d="M188.0 157.0 L185.0 159.1 L182.0 163.0" pathLength="1"/>
+<path d="M23.0 439.0 L22.0 434.0 L22.1 429.0 L23.0 426.0" pathLength="1"/>
+<path d="M141.0 413.0 L140.6 409.0 L130.7 394.0 L120.9 382.0 L113.0 374.1 L101.0 366.8 L84.0 361.0" pathLength="1"/>
+<path d="M364.0 615.0 L364.6 620.0 L363.0 622.0" pathLength="1"/>
+<path d="M129.0 177.0 L132.0 175.1 L135.0 175.4 L143.0 181.7 L149.0 185.0" pathLength="1"/>
+<path d="M507.0 622.0 L519.3 645.0 L524.0 650.0" pathLength="1"/>
+<path d="M485.0 497.0 L485.1 486.0 L486.0 482.0 L486.0 455.0 L485.1 451.0 L484.9 438.0 L484.1 435.0 L481.9 409.0 L480.1 399.0 L479.9 392.0 L476.0 374.0" pathLength="1"/>
+<path d="M194.0 152.0 L199.0 148.0 L202.0 147.1 L208.0 147.0" pathLength="1"/>
+<path d="M193.0 593.0 L191.9 590.0 L186.0 584.1 L162.0 566.3 L129.0 549.8 L121.0 546.3 L116.0 546.0" pathLength="1"/>
+<path d="M138.0 166.0 L149.0 178.0" pathLength="1"/>
+<path d="M565.0 514.0 L564.0 517.0 L566.0 535.0 L565.9 557.0 L561.9 582.0 L557.0 598.0" pathLength="1"/>
+<path d="M627.0 676.0 L626.9 681.0 L625.1 691.0 L625.0 707.0 L627.9 727.0 L628.9 741.0 L628.1 744.0 L628.0 754.0 L626.9 762.0 L624.7 770.0 L619.7 780.0 L615.0 784.7 L608.0 788.2 L597.0 791.3 L583.0 797.4 L575.0 802.3 L555.0 817.2 L541.0 823.7 L527.0 827.3 L523.0 830.0" pathLength="1"/>
+<path d="M273.0 128.0 L270.0 126.1 L263.0 127.6 L261.0 127.0" pathLength="1"/>
+<path d="M24.0 424.0 L24.1 418.0 L27.0 408.0" pathLength="1"/>
+<path d="M258.0 656.0 L254.0 652.8 L249.0 652.0" pathLength="1"/>
+<path d="M153.0 210.0 L151.1 202.0 L152.0 200.0" pathLength="1"/>
+<path d="M227.0 185.0 L228.4 179.0 L230.0 177.0" pathLength="1"/>
+<path d="M227.0 185.0 L222.4 189.0 L219.2 197.0 L211.8 210.0 L211.0 213.0" pathLength="1"/>
+<path d="M227.0 185.0 L229.1 188.9 L231.0 190.2 L238.0 191.0" pathLength="1"/>
+<path d="M363.0 622.0 L360.3 619.9 L359.0 616.0" pathLength="1"/>
+<path d="M363.0 622.0 L366.9 640.0 L367.0 645.0" pathLength="1"/>
+<path d="M538.0 766.0 L537.7 763.0 L534.2 756.0 L519.7 733.0 L515.0 727.0 L504.1 717.0 L503.0 714.0" pathLength="1"/>
+<path d="M485.0 498.0 L486.9 501.0 L487.0 511.0 L486.0 516.0 L485.9 529.0 L483.1 550.0 L483.1 554.0 L484.0 556.0" pathLength="1"/>
+<path d="M333.0 643.0 L335.0 642.1 L338.0 642.1 L343.0 643.3 L346.0 645.0" pathLength="1"/>
+<path d="M333.0 643.0 L321.0 642.0 L308.0 645.9 L298.0 645.0" pathLength="1"/>
+<path d="M333.0 643.0 L337.7 653.0 L339.9 660.0 L343.0 684.0 L342.1 689.0 L341.9 699.0 L338.1 718.0 L338.1 727.0 L339.1 728.6 L346.0 730.4 L348.6 733.0 L349.4 741.0 L353.7 746.0 L354.9 749.0 L355.1 759.0 L355.9 763.0 L354.0 766.0" pathLength="1"/>
+<path d="M227.0 136.0 L226.6 133.0 L225.0 131.1 L218.0 129.1 L205.0 130.1 L199.0 131.9 L187.0 133.1 L179.0 138.0 L173.3 144.0 L171.0 149.0" pathLength="1"/>
+<path d="M258.0 127.0 L257.1 125.0 L257.4 123.1 L261.0 121.0" pathLength="1"/>
+<path d="M144.0 625.0 L141.0 627.9 L137.0 627.9 L134.0 626.0" pathLength="1"/>
+<path d="M226.0 231.0 L236.0 233.9 L245.0 234.9 L251.0 234.0" pathLength="1"/>
+<path d="M285.0 127.0 L292.0 127.1 L297.0 128.8 L300.9 132.0 L302.0 135.0" pathLength="1"/>
+<path d="M229.0 383.0 L234.0 386.1 L244.0 394.6 L248.0 395.0" pathLength="1"/>
+<path d="M505.0 831.0 L491.0 822.0" pathLength="1"/>
+<path d="M525.0 816.0 L527.1 812.0 L538.0 802.0 L551.2 788.0 L551.2 786.0 L549.7 783.0 L541.0 772.0" pathLength="1"/>
+<path d="M525.0 816.0 L511.0 824.1 L509.4 826.0 L508.0 830.0" pathLength="1"/>
+<path d="M525.0 816.0 L527.0 816.6 L531.0 815.7 L545.0 810.7 L573.0 794.8 L591.0 787.2 L599.0 781.9 L602.9 778.0 L604.6 775.0 L603.9 773.1 L602.0 772.1 L585.0 772.0 L580.0 773.0 L559.0 770.9 L546.0 768.1 L543.0 768.1 L541.0 769.0" pathLength="1"/>
+<path d="M92.0 717.0 L90.6 711.0 L86.1 707.0 L82.3 702.0 L80.3 698.0 L80.0 695.0" pathLength="1"/>
+<path d="M374.0 337.0 L374.3 342.0 L380.9 360.0 L382.3 371.0 L385.0 375.0" pathLength="1"/>
+<path d="M168.0 369.0 L156.0 363.2 L143.0 354.3 L131.0 348.3 L118.0 344.1 L107.0 344.1 L99.0 346.8 L77.0 359.1 L67.1 369.0 L64.3 373.0 L62.3 377.0 L62.0 382.0" pathLength="1"/>
+<path d="M93.0 718.0 L95.9 720.0 L101.6 729.0 L101.0 740.0" pathLength="1"/>
+<path d="M141.0 329.0 L139.7 334.0 L133.4 339.1 L134.1 342.0 L139.0 345.6 L158.0 355.3 L166.9 363.0 L169.0 368.0" pathLength="1"/>
+<path d="M540.0 666.0 L543.0 665.2 L551.0 660.3 L558.0 659.0 L559.9 659.4 L560.6 661.0 L558.0 667.0" pathLength="1"/>
+<path d="M205.0 254.0 L203.6 250.0 L196.0 236.0" pathLength="1"/>
+<path d="M329.0 125.0 L329.6 127.0 L327.0 132.0" pathLength="1"/>
+<path d="M239.0 192.0 L236.7 195.9 L230.0 201.9 L220.0 209.7 L212.0 214.0" pathLength="1"/>
+<path d="M524.0 651.0 L524.3 658.0 L528.0 666.0" pathLength="1"/>
+<path d="M318.0 806.0 L315.0 805.0 L296.0 806.0 L283.0 804.0 L259.0 803.9 L225.0 798.9 L196.0 790.2 L182.0 783.2 L173.0 777.7 L151.0 760.9 L131.0 741.0 L113.0 725.0 L96.0 708.0 L92.0 703.0 L82.0 694.0" pathLength="1"/>
+<path d="M318.0 806.0 L328.0 804.0" pathLength="1"/>
+<path d="M128.0 177.0 L126.0 172.0 L128.1 167.0 L131.0 165.1 L137.0 166.0" pathLength="1"/>
+<path d="M509.0 831.0 L523.0 830.0" pathLength="1"/>
+<path d="M346.0 356.0 L341.7 339.0 L337.2 330.0 L332.0 324.1 L327.0 322.0" pathLength="1"/>
+<path d="M334.0 224.0 L335.0 218.0 L335.0 205.0 L334.0 200.0 L335.0 192.0" pathLength="1"/>
+<path d="M196.0 574.0 L198.3 569.0 L200.0 567.4 L204.0 567.1 L208.0 568.0" pathLength="1"/>
+<path d="M26.0 624.0 L24.1 627.0 L25.3 634.0 L36.7 658.0 L40.9 672.0 L40.9 690.0 L38.0 717.0 L39.3 723.0 L41.0 726.0" pathLength="1"/>
+<path d="M543.0 654.0 L542.1 652.0 L542.3 647.0 L556.7 604.0 L557.0 600.0" pathLength="1"/>
+<path d="M543.0 654.0 L547.9 650.0 L554.7 641.0 L576.7 609.0 L582.7 598.0 L586.0 587.0" pathLength="1"/>
+<path d="M543.0 654.0 L540.3 659.0 L539.0 665.0" pathLength="1"/>
+<path d="M327.0 132.0 L328.1 141.0 L330.0 144.0" pathLength="1"/>
+<path d="M28.0 407.0 L31.9 404.0 L40.0 394.0 L45.0 391.0" pathLength="1"/>
+<path d="M69.0 679.0 L73.0 682.7 L76.0 684.0" pathLength="1"/>
+<path d="M528.0 689.0 L534.9 685.7 L538.0 679.0" pathLength="1"/>
+<path d="M140.0 328.0 L133.0 332.2 L126.0 334.7 L105.0 338.1 L90.0 342.3 L60.0 359.3 L48.1 370.0 L32.1 393.0 L27.4 401.0 L26.4 405.0 L27.0 407.0" pathLength="1"/>
+<path d="M270.0 230.0 L268.0 229.1 L264.0 229.1 L255.0 231.4 L252.0 234.0" pathLength="1"/>
+<path d="M270.0 230.0 L280.0 226.6 L293.0 216.0" pathLength="1"/>
+<path d="M171.0 319.0 L169.1 312.0 L169.3 306.0 L179.8 278.0 L185.0 274.0" pathLength="1"/>
+<path d="M51.0 388.0 L59.0 390.3 L69.0 395.3 L80.0 403.1 L83.0 407.0" pathLength="1"/>
+<path d="M173.0 236.0 L173.9 234.0 L173.9 231.0 L167.0 212.0" pathLength="1"/>
+<path d="M137.0 198.0 L134.4 196.0 L131.4 190.0 L129.1 183.0 L129.0 178.0" pathLength="1"/>
+<path d="M27.0 570.0 L29.9 572.1 L32.7 576.0 L48.2 604.0 L58.7 625.0 L63.7 638.0 L64.0 641.0" pathLength="1"/>
+<path d="M326.0 323.0 L325.1 325.0 L325.0 337.0" pathLength="1"/>
+<path d="M138.0 199.0 L140.0 210.0" pathLength="1"/>
+<path d="M225.0 629.0 L227.0 636.0" pathLength="1"/>
+<path d="M68.0 676.0 L65.0 674.0 L59.3 667.0 L33.9 629.0 L28.0 624.0" pathLength="1"/>
+<path d="M340.0 132.0 L340.9 127.0 L338.9 122.1 L336.0 121.1 L330.0 124.0" pathLength="1"/>
+<path d="M288.0 647.0 L291.7 654.0 L293.4 666.0 L292.7 673.0 L291.6 676.0 L289.0 679.0" pathLength="1"/>
+<path d="M189.0 474.0 L195.9 480.1 L200.1 485.9 L203.0 488.0" pathLength="1"/>
+<path d="M288.0 396.0 L288.9 385.0 L286.2 376.0 L279.0 368.0 L274.0 364.0 L271.0 360.0" pathLength="1"/>
+<path d="M321.0 284.0 L322.0 277.0 L322.1 266.0 L323.0 262.0" pathLength="1"/>
+<path d="M537.0 711.0 L535.0 709.4 L533.0 709.0 L531.0 709.4 L529.0 711.0" pathLength="1"/>
+<path d="M61.0 383.0 L54.0 384.4 L51.0 387.0" pathLength="1"/>
+<path d="M370.0 400.0 L366.3 394.0 L366.1 390.0 L369.0 388.0 L377.0 386.0" pathLength="1"/>
+<path d="M379.0 651.0 L370.0 647.0" pathLength="1"/>
+<path d="M397.0 651.0 L410.0 650.9 L428.0 646.7 L432.0 645.0" pathLength="1"/>
+<path d="M321.0 285.0 L317.3 288.1 L308.6 304.0 L302.9 311.9 L294.0 318.0 L285.0 321.7 L277.0 323.6 L273.0 323.0 L269.0 323.9 L261.0 324.0 L240.0 319.9 L235.0 317.7 L189.0 279.0" pathLength="1"/>
+<path d="M362.0 412.0 L367.7 406.0 L370.0 401.0" pathLength="1"/>
+<path d="M544.0 677.0 L547.1 672.3 L557.0 668.0" pathLength="1"/>
+<path d="M544.0 677.0 L547.0 678.9 L571.0 674.1 L600.0 670.9 L605.0 668.0" pathLength="1"/>
+<path d="M380.0 652.0 L384.9 671.0 L386.1 686.0 L387.9 695.0 L386.9 704.0 L383.7 717.0 L375.7 740.0 L374.7 741.9 L372.0 744.0" pathLength="1"/>
+<path d="M68.0 679.0 L59.8 692.0 L45.6 721.0 L43.7 723.9 L41.0 726.0" pathLength="1"/>
+<path d="M295.0 209.0 L297.0 208.1 L301.0 208.4 L302.6 210.0 L303.9 215.0 L304.0 232.0 L303.0 237.0 L303.9 246.0 L302.7 253.0 L297.6 267.0 L295.0 269.2 L292.0 269.9 L288.0 267.9 L285.1 264.0 L285.1 259.0 L288.7 249.0 L289.0 245.0" pathLength="1"/>
+<path d="M302.0 437.0 L306.0 440.7 L315.0 446.1 L322.9 454.0 L325.7 461.0 L328.3 472.0 L331.8 480.0 L336.0 485.9 L341.0 489.0" pathLength="1"/>
+<path d="M566.0 513.0 L569.7 516.0 L576.7 527.0 L587.7 548.0 L592.9 565.0 L601.3 604.0 L607.3 621.0 L621.2 649.0 L625.7 661.0 L627.9 671.0 L627.0 675.0" pathLength="1"/>
+<path d="M286.0 646.0 L282.3 641.0 L270.7 619.0 L265.0 611.0 L260.0 606.1 L247.0 596.9 L235.0 586.1 L209.0 569.0" pathLength="1"/>
+<path d="M343.0 499.0 L342.9 495.0 L341.0 489.0" pathLength="1"/>
+<path d="M281.0 209.0 L275.0 209.1 L260.0 214.0" pathLength="1"/>
+<path d="M332.0 291.0 L330.0 288.1 L324.0 285.0" pathLength="1"/>
+<path d="M546.0 471.0 L550.7 477.0 L554.2 484.0 L560.7 499.0 L565.0 512.0" pathLength="1"/>
+<path d="M270.0 168.0 L269.1 170.0 L268.0 181.0" pathLength="1"/>
+<path d="M507.0 620.0 L507.6 618.0 L505.7 611.0 L499.9 599.0 L495.0 595.3 L486.0 595.0" pathLength="1"/>
+<path d="M270.0 650.0 L260.0 656.0" pathLength="1"/>
+<path d="M333.0 292.0 L337.0 293.3 L349.0 303.0 L360.9 315.0 L368.0 326.0" pathLength="1"/>
+<path d="M338.0 431.0 L334.1 445.0 L334.0 448.0 L336.1 462.0 L340.9 481.0 L341.6 487.0 L341.0 489.0" pathLength="1"/>
+<path d="M142.0 414.0 L153.1 428.0 L158.0 433.0" pathLength="1"/>
+<path d="M331.0 154.0 L331.3 158.0 L333.4 164.0 L335.0 166.0" pathLength="1"/>
+<path d="M282.0 649.0 L285.9 658.0 L286.9 663.0 L287.1 675.0 L289.0 679.0" pathLength="1"/>
+<path d="M584.0 728.0 L576.0 725.7 L564.0 720.3 L554.0 717.0" pathLength="1"/>
+<path d="M492.0 821.0 L503.0 809.0 L534.0 780.0 L540.0 772.0" pathLength="1"/>
+<path d="M73.0 674.0 L75.7 678.0 L76.6 682.0 L76.0 684.0" pathLength="1"/>
+<path d="M223.0 154.0 L220.9 159.0 L213.0 165.2 L202.0 168.9 L189.0 169.0" pathLength="1"/>
+<path d="M204.0 489.0 L208.2 496.0 L221.7 528.0 L224.3 542.0 L228.3 554.0 L231.0 559.0 L234.0 570.0" pathLength="1"/>
+<path d="M288.0 140.0 L283.0 141.9 L277.0 141.9 L275.0 141.0" pathLength="1"/>
+<path d="M249.0 395.0 L261.1 412.0 L287.1 442.0 L310.9 466.0 L330.1 493.0 L336.0 498.7 L339.0 499.9 L342.0 500.0" pathLength="1"/>
+<path d="M27.0 623.0 L14.3 607.0 L11.1 597.0 L11.1 586.0 L13.9 568.0 L14.1 558.0 L15.0 556.0" pathLength="1"/>
+<path d="M486.0 556.0 L488.7 552.0 L494.0 536.0" pathLength="1"/>
+<path d="M189.0 169.0 L180.0 175.1 L174.8 182.0 L169.3 195.0 L168.1 201.0 L167.9 209.0 L167.0 211.0" pathLength="1"/>
+<path d="M352.0 780.0 L350.6 784.0 L339.3 800.0 L337.0 805.0" pathLength="1"/>
+<path d="M295.0 185.0 L301.0 192.0" pathLength="1"/>
+<path d="M516.0 448.0 L517.0 445.0 L516.0 441.0" pathLength="1"/>
+<path d="M329.0 123.0 L327.1 119.0 L322.1 94.0 L320.9 84.0 L314.7 60.0 L306.9 47.0 L288.0 28.1 L281.0 23.3 L252.0 14.1 L232.0 11.0 L211.0 11.1 L201.0 13.1 L187.0 17.8 L170.0 26.3 L163.0 32.1 L150.0 44.0 L138.1 57.0 L125.3 77.0 L123.1 88.0 L123.1 99.0 L131.9 138.0 L134.1 154.0 L137.7 162.0 L138.0 165.0" pathLength="1"/>
+<path d="M171.0 151.0 L169.4 153.0 L168.6 156.0 L173.0 163.0" pathLength="1"/>
+<path d="M270.0 577.0 L260.0 566.0" pathLength="1"/>
+<path d="M321.0 241.0 L320.1 243.0 L320.0 249.0" pathLength="1"/>
+<path d="M299.0 116.0 L282.0 120.0" pathLength="1"/>
+<path d="M545.0 471.0 L543.1 471.4 L542.0 474.0 L544.0 493.0 L542.9 507.0 L535.1 543.0 L531.1 568.0 L530.9 579.0 L529.0 592.0 L528.4 642.0 L527.6 648.0 L525.0 650.0" pathLength="1"/>
+<path d="M295.0 136.0 L293.0 133.4 L289.0 133.0" pathLength="1"/>
+<path d="M274.0 129.0 L277.0 131.6 L283.0 132.0" pathLength="1"/>
+<path d="M488.0 822.0 L467.0 825.9 L450.0 826.0 L417.0 821.9 L360.0 809.6 L358.4 808.0 L357.0 803.0" pathLength="1"/>
+<path d="M25.0 425.0 L27.7 427.1 L42.1 446.0 L52.0 455.9 L65.0 465.7 L116.0 496.3 L140.0 513.1 L151.0 522.1 L161.9 533.0 L169.6 543.0 L170.0 546.0" pathLength="1"/>
+<path d="M275.0 247.0 L267.0 248.3 L257.0 251.9 L251.0 251.9 L248.0 251.0" pathLength="1"/>
+<path d="M197.0 158.0 L203.0 157.9 L207.0 156.6 L209.0 155.0" pathLength="1"/>
+<path d="M471.0 594.0 L469.1 588.0 L474.9 553.0 L475.1 546.0 L478.1 523.0 L480.9 509.0 L481.1 502.0 L484.0 498.0" pathLength="1"/>
+<path d="M275.0 141.0 L271.0 141.9 L268.0 140.0" pathLength="1"/>
+<path d="M371.0 745.0 L365.7 763.0 L362.7 769.0 L360.0 772.0" pathLength="1"/>
+<path d="M222.0 628.0 L196.0 618.1 L186.0 618.1 L182.0 621.0" pathLength="1"/>
+<path d="M491.0 821.0 L478.8 800.0 L466.7 776.0 L456.3 762.0 L447.0 747.0" pathLength="1"/>
+<path d="M358.0 776.0 L358.9 778.0 L358.7 780.0 L351.4 794.0 L350.0 801.0" pathLength="1"/>
+<path d="M294.0 184.0 L280.0 175.0" pathLength="1"/>
+<path d="M323.0 286.0 L323.1 291.0 L324.0 293.0" pathLength="1"/>
+<path d="M432.0 645.0 L429.1 639.0 L429.1 630.0 L429.9 626.0 L429.1 623.0 L427.9 596.0 L427.0 592.0 L427.0 578.0 L428.1 570.0 L429.4 565.1 L432.0 563.0" pathLength="1"/>
+<path d="M432.0 645.0 L435.0 644.9 L448.0 641.0 L451.0 638.0" pathLength="1"/>
+<path d="M505.0 832.0 L501.0 834.9 L486.0 834.6 L484.7 833.0 L485.0 831.0 L488.2 826.0 L489.0 823.0" pathLength="1"/>
+<path d="M226.0 628.0 L232.0 628.1 L235.0 630.0 L247.6 647.0 L248.0 649.0" pathLength="1"/>
+<path d="M254.0 390.0 L260.0 391.3 L263.0 393.0" pathLength="1"/>
+<path d="M93.0 836.0 L96.7 825.0 L98.9 814.0 L100.1 794.0 L102.9 775.0 L104.0 747.0 L102.0 741.0" pathLength="1"/>
+<path d="M247.0 190.0 L251.0 186.4 L265.0 184.0" pathLength="1"/>
+<path d="M536.0 714.0 L532.0 713.6 L529.0 711.0" pathLength="1"/>
+<path d="M258.0 209.0 L256.0 208.1 L252.0 208.1 L243.0 210.8 L230.0 218.3 L227.0 223.0" pathLength="1"/>
+<path d="M182.0 621.0 L184.0 622.6 L204.0 628.3 L222.0 636.7 L226.0 637.0" pathLength="1"/>
+<path d="M329.0 803.0 L331.1 800.0 L335.9 796.0 L338.1 792.0 L341.0 789.0" pathLength="1"/>
+<path d="M228.0 383.0 L198.1 354.0 L185.1 339.0 L171.0 320.0" pathLength="1"/>
+<path d="M76.0 684.0 L81.0 693.0" pathLength="1"/>
+<path d="M346.0 357.0 L348.9 360.0 L351.0 376.0 L350.9 390.0 L348.0 394.0" pathLength="1"/>
+<path d="M281.0 120.0 L278.1 122.1 L276.0 126.0" pathLength="1"/>
+<path d="M247.0 250.0 L229.0 237.9 L226.3 235.0 L225.0 232.0" pathLength="1"/>
+<path d="M321.0 381.0 L322.9 378.0 L326.9 358.0 L327.0 341.0 L326.0 338.0" pathLength="1"/>
+<path d="M189.0 472.0 L187.6 467.0 L184.7 462.0 L168.9 440.0 L162.0 434.4 L159.0 434.0" pathLength="1"/>
+<path d="M189.0 221.0 L193.2 225.0 L195.7 231.0 L196.0 234.0" pathLength="1"/>
+<path d="M332.0 153.0 L335.9 155.1 L337.9 159.0 L337.6 163.0 L335.0 166.0" pathLength="1"/>
+<path d="M245.0 189.0 L238.1 177.0 L238.1 172.0 L240.0 164.0 L239.9 158.0 L238.7 153.0 L235.7 145.1 L231.0 143.0" pathLength="1"/>
+<path d="M386.0 375.0 L388.6 372.0 L388.9 370.0 L385.7 355.0 L380.6 342.0 L377.9 338.1 L375.0 336.0" pathLength="1"/>
+<path d="M166.0 230.0 L162.6 219.0 L160.0 216.0" pathLength="1"/>
+<path d="M160.0 210.0 L156.6 202.0 L154.0 199.0" pathLength="1"/>
+<path d="M513.0 455.0 L505.1 490.0 L507.0 493.0" pathLength="1"/>
+<path d="M363.0 607.0 L360.1 594.0 L356.9 570.0 L348.1 524.0 L345.9 504.0 L343.0 500.0" pathLength="1"/>
+<path d="M378.0 387.0 L372.6 398.9 L371.0 400.0" pathLength="1"/>
+<path d="M334.0 225.0 L334.9 227.0 L334.9 230.0 L331.7 243.0 L325.6 259.9 L323.0 262.0" pathLength="1"/>
+<path d="M475.0 365.0 L466.0 356.8 L450.0 351.7 L443.0 348.3 L439.0 347.1 L423.0 344.9 L405.0 340.7 L384.0 332.3 L374.0 330.0" pathLength="1"/>
+<path d="M502.0 713.0 L495.0 714.8 L476.0 725.3 L449.1 744.3 L447.0 747.0" pathLength="1"/>
+<path d="M166.0 165.0 L171.0 164.9 L173.0 164.0" pathLength="1"/>
+<path d="M516.0 705.0 L520.7 700.0 L527.0 690.0" pathLength="1"/>
+<path d="M330.0 806.0 L335.0 805.9 L337.0 805.0" pathLength="1"/>
+<path d="M530.0 765.0 L537.0 767.0" pathLength="1"/>
+<path d="M134.0 626.0 L138.0 623.1 L142.0 623.1 L144.0 624.0" pathLength="1"/>
+<path d="M134.0 626.0 L124.0 624.7 L121.0 623.6 L117.4 620.9 L117.4 615.0 L121.0 611.3 L125.0 609.3 L130.0 608.1 L145.0 608.0 L169.0 611.0" pathLength="1"/>
+<path d="M432.0 563.0 L433.9 566.0 L434.1 575.0 L435.0 579.0 L435.1 604.0 L436.1 613.0 L438.3 622.0 L443.1 632.0 L446.0 634.9 L451.0 638.0" pathLength="1"/>
+<path d="M345.0 357.0 L344.0 360.0 L344.0 374.0 L344.9 378.0 L345.1 390.0 L347.0 394.0" pathLength="1"/>
+<path d="M288.0 244.0 L286.0 244.4 L280.0 248.0 L278.0 248.6 L276.0 248.0" pathLength="1"/>
+<path d="M335.0 190.0 L334.0 186.0 L334.0 170.0 L335.0 166.0" pathLength="1"/>
+<path d="M185.0 274.0 L184.7 269.0 L178.3 255.0 L177.0 250.0" pathLength="1"/>
+<path d="M229.0 147.0 L229.6 149.0 L228.7 150.9 L224.0 153.0" pathLength="1"/>
+<path d="M323.0 262.0 L321.3 259.0 L320.9 252.0 L320.0 250.0" pathLength="1"/>
+<path d="M310.0 137.0 L303.0 136.0" pathLength="1"/>
+<path d="M480.0 580.0 L485.0 557.0" pathLength="1"/>
+<path d="M480.0 580.0 L476.4 583.0 L473.0 593.0" pathLength="1"/>
+<path d="M480.0 580.0 L482.3 590.0 L485.0 595.0" pathLength="1"/>
+<path d="M495.0 535.0 L499.0 532.9 L512.9 519.0 L522.7 504.0 L526.7 496.0 L530.7 484.0 L532.9 472.0 L531.9 456.0 L530.0 452.0" pathLength="1"/>
+<path d="M507.0 493.0 L510.7 490.9 L514.6 484.0 L521.7 468.0 L526.4 454.0 L529.0 452.0" pathLength="1"/>
+<path d="M507.0 493.0 L501.8 502.0 L498.3 510.0 L494.0 534.0" pathLength="1"/>
+<path d="M170.0 320.0 L148.0 323.3 L145.0 324.4 L141.0 328.0" pathLength="1"/>
+<path d="M221.0 151.0 L218.0 153.6 L210.0 155.0" pathLength="1"/>
+<path d="M515.0 705.0 L510.0 706.4 L506.0 711.0" pathLength="1"/>
+<path d="M267.0 142.0 L267.4 145.0 L270.0 147.2 L278.0 149.9 L284.0 150.6 L295.0 148.7 L303.0 144.0" pathLength="1"/>
+<path d="M26.0 571.0 L26.3 576.0 L38.4 600.0 L57.3 636.0 L60.1 640.0 L63.0 642.0" pathLength="1"/>
+<path d="M210.0 147.0 L215.0 146.9 L217.0 146.0" pathLength="1"/>
+<path d="M266.0 188.0 L263.9 190.9 L259.0 193.9 L254.0 193.9 L249.0 192.6 L247.0 191.0" pathLength="1"/>
+<path d="M45.0 391.0 L48.0 396.0 L54.0 400.2 L76.0 407.7 L81.0 408.9 L83.0 408.0" pathLength="1"/>
+<path d="M289.0 646.0 L291.0 645.1 L296.0 645.0" pathLength="1"/>
+<path d="M395.0 651.0 L381.0 651.0" pathLength="1"/>
+<path d="M626.0 675.0 L622.0 675.4 L616.0 678.9 L604.0 680.9 L596.0 680.0 L580.0 680.0 L565.0 682.9 L553.0 684.0" pathLength="1"/>
+<path d="M605.0 668.0 L601.0 665.1 L586.0 665.0 L581.0 664.0 L571.0 665.1 L559.0 668.0" pathLength="1"/>
+<path d="M63.0 383.0 L79.0 385.1 L87.0 387.3 L119.0 401.8 L140.0 414.0" pathLength="1"/>
+<path d="M90.0 731.0 L92.0 719.0" pathLength="1"/>
+<path d="M506.0 621.0 L504.0 620.6 L502.1 619.0 L495.9 610.0 L486.1 600.0 L485.0 598.0" pathLength="1"/>
+<path d="M302.0 193.0 L307.9 198.0 L310.9 204.0 L310.9 212.0 L309.1 219.0 L309.1 229.0 L311.3 240.0 L315.0 250.0" pathLength="1"/>
+<path d="M268.0 374.0 L270.0 372.4 L272.0 372.0 L274.0 372.4 L276.0 374.0 L277.9 377.0 L277.9 381.0 L276.9 382.7 L273.0 384.0 L270.0 382.9 L267.4 380.0 L267.0 375.0" pathLength="1"/>
+<!-- portrait:end -->
+          </g>
+        </svg>
+        <canvas class="portrait-gl" id="portrait-gl" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title">Where I’ve worked</h2>
+        <p>The short version. <a href="mailto:dino.cosic95@gmail.com?subject=R%C3%A9sum%C3%A9%20request&amp;body=Hi%20Dino%2C%0A%0ACould%20you%20send%20me%20your%20r%C3%A9sum%C3%A9%3F%20A%20little%20about%20the%20role%20or%20project%3A%0A%0A">Ask for my résumé</a> for the rest.</p>
+      </div>
+
+      <div class="roles">
+        <ol class="role-list">
+          <li class="role">
+            <h3>Symphony</h3>
+            <p class="role-meta">Senior Software Engineer, <span class="dates"><time datetime="2024-08">2024</time> to present</span></p>
+            <p class="role-note">Leading development in a core domain of a multi-tenant SaaS logistics platform.</p>
+          </li>
+          <li class="role">
+            <h3>HTEC Group</h3>
+            <p class="role-meta">Senior Software Engineer, <span class="dates"><time datetime="2022-05">2022</time> to <time datetime="2024-08">2024</time></span></p>
+            <p class="role-note">Modernized a business-critical legacy enterprise platform toward Azure microservices.</p>
+          </li>
+          <li class="role">
+            <h3>Authority Partners</h3>
+            <p class="role-meta">Software Developer, then Team Lead, <span class="dates"><time datetime="2019-03">2019</time> to <time datetime="2022-05">2022</time></span></p>
+            <p class="role-note">Grew from developer to team lead on an insurance and title-processing platform.</p>
+          </li>
+          <li class="role">
+            <h3>University of Sarajevo</h3>
+            <p class="role-meta">Teaching Assistant, part-time, <span class="dates"><time datetime="2022-03">2022</time> to <time datetime="2026-09">2026</time></span></p>
+            <p class="role-note">Taught software engineering, Agile delivery, and .NET at the Faculty of Electrical Engineering.</p>
+          </li>
+        </ol>
+
+        <div class="projects">
+          <h3>Independent projects</h3>
+          <div class="project project-lead">
+            <h4><a href="https://flagrm.com" rel="noopener">flagrm</a></h4>
+            <p>An open-source CLI that lets AI coding agents like Claude Code and Copilot remove feature flags and the code behind them, checking the build, tests, and leftover references until they pass.</p>
+            <p class="project-links"><a href="https://github.com/dino-cosic/flagrm" rel="noopener">Source on GitHub</a></p>
+          </div>
+          <div class="project">
+            <h4>CryptoDesk</h4>
+            <p>An automated trading platform for a private client in Germany, integrating multiple cryptocurrency exchanges.</p>
+          </div>
+          <div class="project">
+            <h4>Karter.ba</h4>
+            <p>Founding engineer on an online event-ticketing platform, leading the backend.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="section approach" id="approach" aria-labelledby="approach-title">
+      <div class="section-head">
+        <h2 id="approach-title">How I work</h2>
+        <p>Four habits I bring to every engagement.</p>
+      </div>
+
+      <div class="habits">
+        <div class="habit">
+          <h3>Understand the system before changing it</h3>
+          <p>Legacy platforms rarely match their documentation. I reverse-engineer how a system actually behaves before changing it, because modernization starts with an accurate picture of what exists.</p>
+        </div>
+        <div class="habit">
+          <h3>Own it past the merge</h3>
+          <p>I take features from requirements and design through testing, deployment, and production operation. I design for the operating phase: infrastructure as code, automated and integration tests, and observability with OpenTelemetry and distributed tracing.</p>
+        </div>
+        <div class="habit">
+          <h3>Make the team faster, not just myself</h3>
+          <p>I’ve led a development team, reviewed implementation decisions, and mentored engineers. At university I taught and mentored more than 350 students in how real software teams deliver.</p>
+        </div>
+        <div class="habit">
+          <h3>Translate between product and engineering</h3>
+          <p>I work closely with Product to turn business requirements into scalable designs and delivery plans that teams can actually execute.</p>
+        </div>
+      </div>
+
+      <div class="stack-block">
+      <h3 class="stack-title">Tools and technologies</h3>
+      <dl class="stack">
+        <div><dt>Core</dt><dd>C#, .NET, ASP.NET Core, Entity Framework Core, SQL, PostgreSQL, Microsoft SQL Server, MongoDB, REST and OpenAPI, SignalR</dd></div>
+        <div><dt>Cloud</dt><dd>Azure (AKS, Functions, App Service, Service Bus, Storage, Data Factory, DevOps), Docker, CI/CD, Terraform, Bicep, ARM templates</dd></div>
+        <div><dt>Architecture</dt><dd>Distributed systems, microservices, event-driven architecture, domain-driven design, CQRS, Clean Architecture, resilience patterns</dd></div>
+        <div><dt>Quality and security</dt><dd>xUnit, integration testing, OpenTelemetry, OAuth 2.0, OpenID Connect, RBAC, Azure Managed Identities</dd></div>
+        <div><dt>Also</dt><dd>TypeScript, JavaScript, Angular, Bash</dd></div>
+      </dl>
+      </div>
+    </section>
+
+    <!-- AI -->
+    <section class="section ai" id="ai" aria-labelledby="ai-title">
+      <div class="ai-inner">
+        <div class="section-head">
+          <h2 id="ai-title">AI in the delivery loop, held to the same quality bar</h2>
+        </div>
+        <div class="ai-body">
+          <p class="ai-lead">I introduce spec-driven development and AI-assisted workflows into real delivery teams, aiming for measurably faster engineering without lowering the quality bar.</p>
+          <div class="ai-points">
+            <div>
+              <h3>Specs come first</h3>
+              <p>Work starts from a written specification, so assistants have something precise to implement and reviewers have something to check the result against.</p>
+            </div>
+            <div>
+              <h3>Repeatable, not heroic</h3>
+              <p>I built reusable AI tooling, agent skills, configurations, and workflows, so the benefit is part of day-to-day development rather than one person’s habit.</p>
+            </div>
+            <div>
+              <h3>Tools I use</h3>
+              <p>Claude Code, GitHub Copilot, and LLMs more broadly, with prompt engineering and agent skills as working practice. I hold the Claude Certified Architect – Foundations certification.</p>
+            </div>
+          </div>
+          <p class="ai-scope">Production practice, not side experiments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="about-side">
+        <h2 id="about-title">About me</h2>
+        <figure class="about-art">
+          <img src="/assets/portrait.jpg" width="800" height="960" loading="lazy" decoding="async" alt="Dino Cosic smiling with arms crossed, in an office corridor">
+        </figure>
+      </div>
+      <div class="about-copy">
+        <p>I’m a software engineer from Sarajevo. Curiosity about how things work turned into a career building systems that scale, and then into leading teams and shaping the architecture of platforms that businesses depend on.</p>
+        <p>I studied computer science at the Faculty of Electrical Engineering, University of Sarajevo. My bachelor’s thesis covered a chatbot with social media integration for e-commerce, and my master’s thesis applied machine learning methods to cancer diagnosis. I later taught there part-time alongside my engineering work.</p>
+        <p>I hold the Microsoft Certified: Azure Fundamentals and Claude Certified Architect – Foundations certifications.</p>
+        <p class="about-writing">I also write on <a href="https://medium.com/@dino.cosic" rel="noopener">Medium</a> about LLMs, Azure Functions, Docker, and .NET practices. Several pieces began as team onboarding and knowledge-sharing material.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Working on a system that outgrew its design?</h2>
+      <p class="contact-lede">Write to me. I’m open to remote, hybrid, or relocation roles across the US and EU, and available for consulting and freelance engagements.</p>
+      <p class="contact-mail">
+        <a href="mailto:dino.cosic95@gmail.com">dino.cosic95@gmail.com</a>
+        <button class="copy" type="button" data-copy="dino.cosic95@gmail.com" aria-label="Copy email address" title="Copy email address" hidden>
+          <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="12" height="12" rx="1.5"/><path d="M15.5 8.5V5a1.5 1.5 0 0 0-1.5-1.5H5A1.5 1.5 0 0 0 3.5 5v9A1.5 1.5 0 0 0 5 15.5h3.5"/></svg>
+          <svg class="copy-done" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5l5 5 10-11"/></svg>
+        </button>
+        <span class="copy-status" role="status"></span>
+      </p>
+      <p class="contact-actions">
+        <a class="btn btn-primary" href="mailto:dino.cosic95@gmail.com?subject=R%C3%A9sum%C3%A9%20request&amp;body=Hi%20Dino%2C%0A%0ACould%20you%20send%20me%20your%20r%C3%A9sum%C3%A9%3F%20A%20little%20about%20the%20role%20or%20project%3A%0A%0A">Request my résumé</a>
+      </p>
+      <ul class="contact-links">
+        <li><a href="https://www.linkedin.com/in/dino-cosic" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://medium.com/@dino.cosic" rel="noopener">Medium</a></li>
+        <li><a href="https://x.com/Dino_Codes" rel="noopener">X</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>© <span data-year>2026</span> Dino Cosic</p>
+    <p><a href="#top">Back to top</a></p>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
 </html>
