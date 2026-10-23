@@ -64,6 +64,7 @@ sections.forEach((s) => spy.observe(s));
 // ---- contact: copy the address for people without a mail client ----
 const copyBtn = document.querySelector('.copy');
 const copyStatus = document.querySelector('.copy-status');
+const copyLabel = document.querySelector('.copy-label');
 if (copyBtn && navigator.clipboard) {
   copyBtn.hidden = false;
   let reset = 0;
@@ -71,7 +72,7 @@ if (copyBtn && navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(copyBtn.dataset.copy);
       copyBtn.classList.add('is-done');
-      copyBtn.title = 'Copied';
+      copyLabel.textContent = 'Copied';
       copyStatus.textContent = 'Email address copied';
     } catch {
       copyStatus.textContent = 'Could not copy. Select the address instead.';
@@ -79,7 +80,7 @@ if (copyBtn && navigator.clipboard) {
     clearTimeout(reset);
     reset = setTimeout(() => {
       copyBtn.classList.remove('is-done');
-      copyBtn.title = 'Copy email address';
+      copyLabel.textContent = 'Copy email';
       copyStatus.textContent = '';
     }, 2000);
   });
