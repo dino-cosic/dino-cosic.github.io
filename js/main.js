@@ -50,9 +50,14 @@ onScroll();
 // ---- current section in the nav ----
 const links = [...nav.querySelectorAll('a')];
 const sections = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const hero = document.querySelector('.hero');
 const spy = new IntersectionObserver((entries) => {
   for (const entry of entries) {
     if (!entry.isIntersecting) continue;
+    if (entry.target === hero) {
+      links.forEach((a) => a.removeAttribute('aria-current'));
+      continue;
+    }
     links.forEach((a) => {
       if (a.getAttribute('href') === `#${entry.target.id}`) a.setAttribute('aria-current', 'true');
       else a.removeAttribute('aria-current');
@@ -60,6 +65,7 @@ const spy = new IntersectionObserver((entries) => {
   }
 }, { rootMargin: '-45% 0px -50% 0px' });
 sections.forEach((s) => spy.observe(s));
+if (hero) spy.observe(hero);
 
 // ---- contact: copy the address for people without a mail client ----
 const copyBtn = document.querySelector('.copy');

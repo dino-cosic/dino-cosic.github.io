@@ -14,3 +14,6 @@ __pycache__/
 
 # Source material (résumé, copy, drawing). Kept local, not public.
 data/
+
+# Hallmark design-run artifacts (screenshots, lint records, log)
+.hallmark/
