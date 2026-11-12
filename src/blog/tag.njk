@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.blogTags
+  size: 1
+  alias: tag
+permalink: "/blog/tags/{{ tag.slug }}/"
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "Articles on {{ tag.name }}"
+  description: "Articles by Dino Cosic tagged {{ tag.name }}."
+  robots: "{{ 'index, follow' if tag.indexed else 'noindex, follow' }}"
+---
+{%- from "partials/entries.njk" import entries, tagNav, search -%}
+<section class="blog-index container" aria-labelledby="blog-title">
+  <div class="blog-head">
+    <div class="section-head">
+      <p class="crumb"><a href="/blog/">All writing</a></p>
+      <h1 id="blog-title">{{ tag.name }}</h1>
+      <p class="lead">{{ tag.posts.length }} {{ "article" if tag.posts.length == 1 else "articles" }} with this tag.</p>
+    </div>
+    <div class="blog-tools">
+      {{ search() }}
+      {{ tagNav(collections.blogTags, tag.slug) }}
+    </div>
+  </div>
+
+  {{ entries(tag.posts) }}
+  <p class="search-status" role="status" data-search-status></p>
+</section>

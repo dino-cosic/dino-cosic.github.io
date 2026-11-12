@@ -1,5 +1,10 @@
-# Build output from the deploy workflow
+# Build output (npm run build) and dependencies
 dist
+node_modules/
+
+# Medium import: the extracted export and the generated report stay local
+/medium-export/
+/reports/
 
 # Python (tools/)
 __pycache__/

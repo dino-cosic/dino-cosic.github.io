@@ -1,0 +1,32 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ site.url }}/</loc>
+    <lastmod>{{ collections.home[0].date | isoDate }}</lastmod>
+  </url>
+  <url>
+    <loc>{{ site.url }}/blog/</loc>
+    {%- if collections.posts.length %}
+    <lastmod>{{ collections.posts | lastModified | isoDate }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- for post in collections.posts %}
+  <url>
+    <loc>{{ site.url }}{{ post.url }}</loc>
+    <lastmod>{{ (post.data.updated or post.date) | isoDate }}</lastmod>
+  </url>
+  {%- endfor %}
+  {#- Tags with a single article are marked noindex, so they stay out of the sitemap too. #}
+  {%- for tag in collections.blogTags %}
+  {%- if tag.indexed %}
+  <url>
+    <loc>{{ site.url }}/blog/tags/{{ tag.slug }}/</loc>
+    <lastmod>{{ tag.posts | lastModified | isoDate }}</lastmod>
+  </url>
+  {%- endif %}
+  {%- endfor %}
+</urlset>

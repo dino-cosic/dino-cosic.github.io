@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Why I Stopped Mocking DbContext</title></head><body><article>
+<header><h1 class="p-name">Why I Stopped Mocking DbContext</h1></header>
+<section class="e-content">
+<div class="section-inner"><h3 class="graf graf--h3 graf--title">Why I Stopped Mocking DbContext</h3>
+<p class="graf graf--p">Mocking <code>DbContext</code> gives you tests that pass and queries that fail. An in-memory provider is closer, and a real database in a container is closer still, which is where I ended up after two years of chasing false positives across three projects.</p>
+<h4 class="graf graf--h4">The test that lied</h4>
+<pre class="graf graf--pre">var mock = new Mock&lt;AppDbContext&gt;();<br>mock.Setup(c =&gt; c.Orders).Returns(orders);<br><br>// passes, and proves nothing</pre>
+<p class="graf graf--p">Complexity is O(n<sup>2</sup>) in the worst case.</p>
+<p class="graf graf--p"><img src="https://cdn-images-1.medium.com/max/800/0*NoExtensionHere"></p>
+<video src="https://example.com/demo.mp4" controls></video>
+<details><summary>Full stack trace</summary><p>System.InvalidOperationException at line 42</p></details>
+</div>
+</section>
+</article></body></html>

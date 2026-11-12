@@ -1,0 +1,25 @@
+<meta name="google-site-verification" content="{{ site.googleSiteVerification }}">
+
+  <!-- Decide on the WebGL hero before first paint so the SVG fallback never flashes. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      try {
+        var c = document.createElement('canvas');
+        var gl = c.getContext('webgl2') || c.getContext('webgl');
+        if (gl) {
+          root.classList.add('gl');
+          var ext = gl.getExtension('WEBGL_lose_context');
+          if (ext) ext.loseContext();
+        }
+      } catch (e) { /* fallback stays on */ }
+      if (still) root.classList.add('still');
+    })();
+  </script>
+
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" crossorigin>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js" } }
+  </script>

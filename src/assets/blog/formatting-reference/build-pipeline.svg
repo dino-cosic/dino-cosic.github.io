@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 44 760 112" role="img" aria-labelledby="t" font-family="system-ui, sans-serif" font-size="15">
+  <title id="t">Markdown files pass through Eleventy and come out as static HTML on GitHub Pages</title>
+  <g fill="none" stroke="#17181c" stroke-width="1.5">
+    <rect x="20" y="60" width="180" height="80" rx="3"/>
+    <rect x="290" y="60" width="180" height="80" rx="3"/>
+    <rect x="560" y="60" width="180" height="80" rx="3"/>
+    <path d="M200 100h82m-10-7 10 7-10 7M470 100h82m-10-7 10 7-10 7" stroke="#2a3cf0"/>
+  </g>
+  <g fill="#17181c" text-anchor="middle">
+    <text x="110" y="96" font-weight="600">Markdown</text>
+    <text x="110" y="118" fill="#5b616e">src/blog/posts</text>
+    <text x="380" y="96" font-weight="600">Eleventy build</text>
+    <text x="380" y="118" fill="#5b616e">validate, render</text>
+    <text x="650" y="96" font-weight="600">Static HTML</text>
+    <text x="650" y="118" fill="#5b616e">GitHub Pages</text>
+  </g>
+</svg>

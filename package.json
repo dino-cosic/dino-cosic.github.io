@@ -1,0 +1,27 @@
+{
+  "name": "dino-cosic.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio and technical blog",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && eleventy",
+    "preview": "npm run build && node tools/preview.js",
+    "preview:drafts": "BLOG_DRAFTS=1 npm run build && node tools/preview.js",
+    "test": "node --test test/*.test.js",
+    "migrate:medium": "node tools/medium-import/cli.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.8",
+    "@11ty/eleventy-plugin-rss": "^3.1.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "@joplin/turndown-plugin-gfm": "^1.0.68",
+    "cheerio": "^1.2.0",
+    "markdown-it": "^14.3.3",
+    "turndown": "^7.2.5"
+  }
+}
