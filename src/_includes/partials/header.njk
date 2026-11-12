@@ -1,3 +1,7 @@
+{#- On the homepage the section links stay as bare "#work" fragments: main.js highlights the
+    current section by matching them. Every other page links back to "/#work". -#}
+{%- set isHomePage = page.url == '/' -%}
+{%- set sectionBase = '' if isHomePage else '/' -%}
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="bar">
@@ -8,18 +12,22 @@
     </div>
   </div>
   <div class="container bar-row">
+    {%- if isHomePage %}
+    <a class="bar-mark" href="#top" aria-label="{{ site.author.name }}, back to top">
+    {%- else %}
     <a class="bar-mark" href="/" aria-label="{{ site.author.name }}, home">
+    {%- endif %}
       <svg viewBox="6 6 52 52" aria-hidden="true" focusable="false"><path d="M23 14V42C23 50 19 54 15.5 53 12 52 12 46.5 16.5 46 21 45.5 26 50 35 50A18 18 0 0 0 35 14H13"/><circle cx="12" cy="14" r="4.6"/></svg>
     </a>
     <button class="bar-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="bar-nav" id="site-nav" aria-label="Primary">
       <ul>
-        <li><a href="/#work">Work</a></li>
-        <li><a href="/#approach">Approach</a></li>
-        <li><a href="/#ai">AI</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/blog/" aria-current="{{ 'page' if page.url == '/blog/' else 'true' }}">Writing</a></li>
-        <li><a href="/#contact">Contact</a></li>
+        <li><a href="{{ sectionBase }}#work">Work</a></li>
+        <li><a href="{{ sectionBase }}#approach">Approach</a></li>
+        <li><a href="{{ sectionBase }}#ai">AI</a></li>
+        <li><a href="{{ sectionBase }}#about">About</a></li>
+        <li><a href="/blog/"{% if page.url == '/blog/' %} aria-current="page"{% elif page.url.startsWith('/blog/') %} aria-current="true"{% endif %}>Writing</a></li>
+        <li><a href="{{ sectionBase }}#contact">Contact</a></li>
       </ul>
     </nav>
   </div>

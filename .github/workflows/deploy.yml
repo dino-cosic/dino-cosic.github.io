@@ -39,8 +39,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Full history: the homepage's sitemap date comes from the last commit that touched it.
+      # A shallow clone would give every file the date of the latest commit.
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4

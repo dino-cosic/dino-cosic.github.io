@@ -3,6 +3,12 @@
 {%- set pageUrl = site.url + page.url -%}
 {%- set canonical = canonicalUrl or pageUrl -%}
 {%- set shareImage = (coverImage or site.ogImage) | absUrl -%}
+{%- set shareDescription = ogDescription or metaDescription -%}
+{#- Two bundles share this layout. "blog" (the default) adds the code font, blog.css and blog.js.
+    "home" loads site.css and main.js only, plus the hero setup in partials/home-head.njk. -#}
+{%- set isHome = bundle == 'home' -%}
+{%- set fontFamilies = "family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400" -%}
+{%- if not isHome %}{% set fontFamilies = "family=JetBrains+Mono:wght@400;600&" + fontFamilies %}{% endif -%}
 <!doctype html>
 <html lang="{{ site.language }}">
 <head>
@@ -29,8 +35,12 @@
   <meta property="og:type" content="{{ ogType or 'website' }}">
   <meta property="og:url" content="{{ canonical }}">
   <meta property="og:title" content="{{ title or site.title }}">
-  <meta property="og:description" content="{{ metaDescription }}">
+  <meta property="og:description" content="{{ shareDescription }}">
   <meta property="og:image" content="{{ shareImage }}">
+  {%- if not coverImage %}
+  <meta property="og:image:width" content="{{ site.ogImageSize.width }}">
+  <meta property="og:image:height" content="{{ site.ogImageSize.height }}">
+  {%- endif %}
   {%- if ogType == 'article' %}
   <meta property="article:published_time" content="{{ page.date | isoDateTime }}">
   {%- if updated %}
@@ -44,7 +54,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="{{ site.author.x }}">
   <meta name="twitter:title" content="{{ title or site.title }}">
-  <meta name="twitter:description" content="{{ metaDescription }}">
+  <meta name="twitter:description" content="{{ twitterDescription or shareDescription }}">
   <meta name="twitter:image" content="{{ shareImage }}">
 
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -52,10 +62,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ fontFamilies }}&display=swap">
   <link rel="stylesheet" href="/css/site.css">
+  {%- if isHome %}
+  {% include "partials/home-head.njk" %}
+  {%- else %}
   <link rel="stylesheet" href="/css/blog.css">
   <script>document.documentElement.classList.add('js');</script>
+  {%- endif %}
   {%- if ogType == 'article' %}
   <script type="application/ld+json">{{ { title: title, description: description, date: page.date, updated: updated, url: canonical, image: shareImage, tags: tags } | blogPostingJsonLd | safe }}</script>
   {%- endif %}
@@ -66,12 +80,12 @@
 
   <div class="thread" aria-hidden="true"><span class="thread-fill"></span></div>
 
-  <main id="main" class="blog">
+  <main id="main"{% if not isHome %} class="blog"{% endif %}>
     {{ content | safe }}
   </main>
 
   {% include "partials/footer.njk" %}
 
-  <script type="module" src="/js/blog.js"></script>
+  <script type="module" src="/js/{{ 'main' if isHome else 'blog' }}.js"></script>
 </body>
 </html>

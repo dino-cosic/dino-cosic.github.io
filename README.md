@@ -21,30 +21,32 @@ Node 20 or newer.
 ## Layout
 
 ```
-index.html, 404.html     the portfolio pages, copied to dist/ unchanged
 css/                     tokens.css, base.css, site.css (portfolio) and blog.css (blog pages only)
 js/                      chrome.js (header, shared), main.js (homepage), blog.js (blog), hero-scene.js, portrait.js
 assets/                  images; article images live in assets/blog/<article-slug>/
 src/                     everything Eleventy renders
-  _data/site.js          site URL, author, blog title and description
-  _includes/             layouts (base, post) and partials (header, footer, article list)
+  _data/site.js          site URL, author, email, analytics ID, blog title and description
+  index.njk              the homepage
+  404.njk                the "page not found" page
+  _includes/             layouts (base, post) and partials (header, footer, article list, portrait)
   blog/index.njk         /blog/
   blog/tag.njk           /blog/tags/<tag>/
   blog/posts/*.md        the articles
   sitemap.njk, robots.njk
 lib/                     build helpers: slugs, frontmatter validation, contents list, related articles
 tools/medium-import/     the Medium importer
-tools/build_portrait.py  regenerates the hero portrait strokes inside index.html
+tools/build_portrait.py  regenerates the hero portrait partial
 test/                    tests and Medium export fixtures
 eleventy.config.js       build configuration
 ```
 
 Notes on the portfolio pages:
 
-- `index.html` holds all homepage content. The portrait strokes are inlined between the `portrait:start/end` markers; `tools/build_portrait.py` regenerates them from `data/dino-one-line.png` (needs pillow, numpy, scipy, scikit-image).
+- `src/index.njk` holds all homepage content. It uses the same layout, header and footer as the blog, with `bundle: home` to load `main.js` and the hero setup instead of the blog files.
+- The portrait strokes live in `src/_includes/partials/portrait.html`. Do not edit that file by hand. `tools/build_portrait.py` regenerates it from `data/dino-one-line.png` (needs pillow, numpy, scipy, scikit-image).
 - `data/` is source material (résumé, copy, drawing). It is gitignored and kept only locally.
-- The homepage header is written out in `index.html`; blog pages use `src/_includes/partials/header.njk`. A change to the navigation goes in both.
-- When the homepage content changes, update `homeLastmod` in `src/_data/site.js` so the sitemap reflects it.
+- Every page uses `src/_includes/partials/header.njk`. A change to the navigation goes there only.
+- The sitemap date for the homepage is the date of the last commit that changed `src/index.njk`. The deploy checks out the full history for this reason.
 - All paths are root-relative, so the site works the same locally and on GitHub Pages.
 
 ## Writing
@@ -196,7 +198,7 @@ For new articles, publish here first. If you also want the piece on Medium, use 
 
 `.github/workflows/deploy.yml` then installs dependencies, runs the tests, builds the site and deploys `dist/` to GitHub Pages. If an article has invalid metadata the build step fails and the live site stays as it was; the workflow log names the file and the field.
 
-The site URL used for canonical links, the feed and the sitemap comes from the Pages configuration at build time (`SITE_URL`), with `https://dino-cosic.github.io` as the local default in `src/_data/site.js`. If you add a custom domain in the repository's Pages settings, generated URLs follow it. The homepage's own meta tags in `index.html` are written by hand and would need the new domain typed in.
+The site URL used for canonical links, the feed and the sitemap comes from the Pages configuration at build time (`SITE_URL`), with `https://dino-cosic.github.io` as the local default in `src/_data/site.js`. If you add a custom domain in the repository's Pages settings, generated URLs follow it on every page, the homepage included.
 
 ### 9. The RSS feed
 
@@ -206,4 +208,4 @@ The site URL used for canonical links, the feed and the sitemap comes from the P
 
 `npm test` covers frontmatter validation, slug generation, Markdown rendering helpers, Medium HTML conversion, duplicate detection and reruns of the importer, and a real production build (routes, metadata, drafts excluded, the build failing on invalid metadata). The build test copies the files the site is built from into a temporary folder, adds its own articles there and builds that copy, so it never writes to the repository; a test checks this.
 
-Tests and tools stay out of the published site: Eleventy reads only `src/`, and the passthrough copy takes only `index.html`, `404.html`, `css/`, `js/` and `assets/`. In the deploy workflow, tests run in a separate job on their own checkout, and the site is built from a clean checkout that tests never touched. The deploy needs both jobs to pass. The Medium importer's only output into the site is the articles it imports (as drafts in `src/blog/posts/`) and their images (in `assets/blog/`); its manifest stays in `tools/medium-import/`.
+Tests and tools stay out of the published site: Eleventy reads only `src/`, and the passthrough copy takes only `css/`, `js/` and `assets/`. In the deploy workflow, tests run in a separate job on their own checkout, and the site is built from a clean checkout that tests never touched. The deploy needs both jobs to pass. The Medium importer's only output into the site is the articles it imports (as drafts in `src/blog/posts/`) and their images (in `assets/blog/`); its manifest stays in `tools/medium-import/`.

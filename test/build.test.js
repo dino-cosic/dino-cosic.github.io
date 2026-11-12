@@ -13,7 +13,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const eleventy = path.join(root, 'node_modules/@11ty/eleventy/cmd.cjs');
 // Everything the production build reads. If the build starts reading something else, the sandbox
 // build fails, which is the cue to add it here.
-const SITE_FILES = ['package.json', 'eleventy.config.js', 'index.html', '404.html', 'src', 'lib', 'css', 'js', 'assets'];
+const SITE_FILES = ['package.json', 'eleventy.config.js', 'src', 'lib', 'css', 'js', 'assets'];
 const SITE_URL = 'https://example.test';
 
 const fixtures = {
@@ -109,10 +109,46 @@ test('the test build never writes to the repository', () => {
   for (const name of Object.keys(fixtures)) assert.ok(!fs.existsSync(path.join(realPosts, name)), `${name} leaked into src/blog/posts`);
 });
 
-test('the existing portfolio is copied through unchanged', () => {
-  for (const file of ['index.html', '404.html', 'css/site.css', 'css/tokens.css', 'js/main.js', 'js/hero-scene.js', 'assets/og.png']) {
+test('stylesheets, scripts and images are copied through unchanged', () => {
+  for (const file of ['css/site.css', 'css/tokens.css', 'js/main.js', 'js/hero-scene.js', 'assets/og.png']) {
     assert.deepEqual(fs.readFileSync(path.join(out, file)), fs.readFileSync(path.join(root, file)), `${file} differs from its source`);
   }
+});
+
+test('the homepage is built from the shared layout and site data', () => {
+  const html = read('index.html');
+  assert.match(html, /<title>Dino Cosic, Senior Software Engineer and Technical Lead<\/title>/);
+  assert.match(html, new RegExp(`<link rel="canonical" href="${SITE_URL}/">`));
+  assert.match(html, new RegExp(`<meta property="og:url" content="${SITE_URL}/">`));
+  assert.ok(!html.includes('dino-cosic.github.io'), 'no hardcoded production URL');
+  assert.match(html, /<meta name="google-site-verification"/);
+  assert.match(html, /<script type="importmap">/);
+  assert.match(html, /<script type="module" src="\/js\/main\.js"><\/script>/);
+  assert.ok(!html.includes('/css/blog.css') && !html.includes('/js/blog.js'), 'no blog bundle on the homepage');
+  assert.equal((html.match(/<path d="M/g) ?? []).length > 100, true, 'the portrait strokes are inlined');
+  assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1, 'exactly one h1');
+  // main.js highlights the current section by matching bare fragment links.
+  assert.match(html, /<a href="#work">Work<\/a>/);
+  assert.match(html, /<a class="bar-mark" href="#top"/);
+  assert.ok(!html.includes('&amp;amp;'), 'nothing is escaped twice');
+  assert.match(html, /\?subject=R%C3%A9sum%C3%A9%20request&amp;body=/);
+});
+
+test('blog pages link back to the homepage sections', () => {
+  const html = read('blog/index.html');
+  assert.match(html, /<a href="\/#work">Work<\/a>/);
+  assert.match(html, /<a class="bar-mark" href="\/"/);
+  assert.match(html, /<a href="\/blog\/" aria-current="page">Writing<\/a>/);
+  assert.match(read('blog/zz-test-published/index.html'), /<a href="\/blog\/" aria-current="true">Writing<\/a>/);
+});
+
+test('the 404 page is generated and kept out of search results', () => {
+  assert.match(read('404.html'), /<meta name="robots" content="noindex">/);
+  assert.ok(!read('sitemap.xml').includes('404'));
+});
+
+test('the sitemap lists the homepage with a real date', () => {
+  assert.match(read('sitemap.xml'), new RegExp(`<loc>${SITE_URL}/</loc>\\s*<lastmod>\\d{4}-\\d{2}-\\d{2}</lastmod>`));
 });
 
 test('blog routes are generated', () => {
@@ -190,8 +226,8 @@ test('a quoted "updated" date renders like an unquoted one', () => {
   assert.match(html, /<time datetime="2020-01-20">20 January 2020<\/time>/);
 });
 
-test('every internal link and asset on blog pages resolves to a generated file', () => {
-  const pages = ['blog/index.html', 'blog/zz-test-published/index.html', 'blog/tags/dotnet/index.html'];
+test('every internal link and asset resolves to a generated file', () => {
+  const pages = ['index.html', '404.html', 'blog/index.html', 'blog/zz-test-published/index.html', 'blog/tags/dotnet/index.html'];
   for (const page of pages) {
     for (const [, url] of read(page).matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
       const target = url.endsWith('/') ? `${url}index.html` : url;

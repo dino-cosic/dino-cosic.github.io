@@ -1,0 +1,233 @@
+---
+layout: layouts/base.njk
+bundle: home
+permalink: /
+# The sitemap's <lastmod> for the homepage: the date of the last commit that touched this file.
+date: git Last Modified
+description: "Senior Software Engineer and Technical Lead who modernizes legacy enterprise platforms on .NET and Azure, owns delivery end to end, and uses spec-driven, AI-assisted engineering to ship faster at the same quality bar."
+ogDescription: "I untangle systems that outgrew their original design. Legacy modernization, .NET and Azure, and AI-assisted engineering that holds up in production."
+twitterDescription: "I untangle systems that outgrew their original design."
+---
+{%- set resumeHref = "mailto:" + site.email + "?subject=R%C3%A9sum%C3%A9%20request&body=Hi%20Dino%2C%0A%0ACould%20you%20send%20me%20your%20r%C3%A9sum%C3%A9%3F%20A%20little%20about%20the%20role%20or%20project%3A%0A%0A" -%}
+  <!-- HERO: the headline and the portrait both stand on one baseline -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1 id="hero-title">I untangle systems that outgrew their original design.</h1>
+        <p class="lead hero-lede">Senior Software Engineer and Technical Lead. I design, build, and modernize enterprise and multi-tenant SaaS platforms.</p>
+        <p class="hero-actions">
+          <a class="btn btn-primary" href="#work">See the work</a>
+          <a class="btn" href="{{ resumeHref }}">Request résumé</a>
+        </p>
+      </div>
+
+      <div class="hero-art" id="hero-art">
+        {% include "partials/portrait.html" %}
+        <canvas class="portrait-gl" id="portrait-gl" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK: an index of roles, the three figures beside its head -->
+  <section class="section work" id="work" aria-labelledby="work-title">
+    <div class="container">
+      <div class="work-head">
+        <div class="section-head">
+          <h2 id="work-title">Where I’ve worked</h2>
+          <p class="lead">The short version. <a href="{{ resumeHref }}">Ask for my résumé</a> for the rest.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>years building production systems</dt><dd class="num"><span data-years>7</span>+</dd></div>
+          <div><dt>students taught and mentored</dt><dd class="num">400+</dd></div>
+          <div><dt>startups joined as founding engineer</dt><dd class="num">2</dd></div>
+        </dl>
+      </div>
+
+      <ol class="role-list">
+        <li class="role role-lead">
+          <div class="role-name">
+            <h3>Symphony</h3>
+            <p class="role-meta">Senior Software Engineer, <span class="dates"><time datetime="2024-08">2024</time> to present</span></p>
+          </div>
+          <p class="role-note">I lead development in a core domain of a multi-tenant SaaS logistics platform that handles more than 50 million trailer moves a year, one of five teams on the program. I joined during a high-risk MVP phase and helped get it stable and into production. I also introduced spec-driven development and AI-assisted workflows that raised engineering velocity by about 30%.</p>
+        </li>
+        <li class="role">
+          <div class="role-name">
+            <h3>HTEC Group</h3>
+            <p class="role-meta">Senior Software Engineer, <span class="dates"><time datetime="2022-05">2022</time> to <time datetime="2024-08">2024</time></span></p>
+          </div>
+          <p class="role-note">I led the modernization of a business-critical legacy platform toward Azure microservices, starting by reverse-engineering workflows nobody had documented. I built the CI/CD pipelines and infrastructure-as-code provisioning, which cut deployment time roughly in half, and an integration-testing framework for Azure Data Factory that removed about 40% of manual validation.</p>
+        </li>
+        <li class="role">
+          <div class="role-name">
+            <h3>Authority Partners</h3>
+            <p class="role-meta">Software Developer, then Team Lead, <span class="dates"><time datetime="2019-03">2019</time> to <time datetime="2022-05">2022</time></span></p>
+          </div>
+          <p class="role-note">I started as a developer and was promoted to lead a team of six on an insurance and title-processing platform. I architected third-party API integrations handling thousands of transactions a day, which opened new revenue for the business, and owned production support for the systems behind them.</p>
+        </li>
+        <li class="role">
+          <div class="role-name">
+            <h3>University of Sarajevo</h3>
+            <p class="role-meta">Teaching Assistant, part-time, <span class="dates"><time datetime="2022-03">2022</time> to <time datetime="2026-09">2026</time></span></p>
+          </div>
+          <p class="role-note">I taught and mentored more than 400 students at the Faculty of Electrical Engineering, running large Scrum projects modeled on real product teams. The course held 95% satisfaction.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PROJECTS: flagrm opened as the case, the other two beneath it -->
+  <section class="section projects" id="projects" aria-labelledby="projects-title">
+    <div class="container">
+      <h2 id="projects-title">Independent projects</h2>
+      <div class="project-lead">
+        <h3 class="project-name"><a href="https://flagrm.com" rel="noopener">flagrm</a></h3>
+        <div class="project-body">
+          <p class="lead">An open-source CLI that lets AI coding agents like Claude Code and Copilot remove feature flags and the code behind them, checking the build, tests, and leftover references until they pass.</p>
+          <p class="project-links"><a href="https://github.com/dino-cosic/flagrm" rel="noopener">Source on GitHub</a></p>
+        </div>
+      </div>
+      <div class="project-more">
+        <div class="project">
+          <h3>CryptoDesk</h3>
+          <p>An automated trading platform for a private client in Germany, integrating multiple cryptocurrency exchanges.</p>
+        </div>
+        <div class="project">
+          <h3>Karter.ba</h3>
+          <p>Founding engineer on an online event-ticketing platform, leading the backend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH: four habits as rows -->
+  <section class="section approach" id="approach" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="section-head section-head-split">
+        <h2 id="approach-title">How I work</h2>
+        <p class="lead">Four habits I bring to every engagement.</p>
+      </div>
+      <ul class="habits">
+        <li class="habit">
+          <h3>Understand the system before changing it</h3>
+          <p>Legacy platforms rarely match their documentation. I reverse-engineer how a system actually behaves before changing it, because modernization starts with an accurate picture of what exists.</p>
+        </li>
+        <li class="habit">
+          <h3>Own it past the merge</h3>
+          <p>I take features from requirements and design through testing, deployment, and production operation. I design for the operating phase: infrastructure as code, automated and integration tests, and observability with OpenTelemetry and distributed tracing.</p>
+        </li>
+        <li class="habit">
+          <h3>Make the team faster, not just myself</h3>
+          <p>I’ve led a development team, reviewed implementation decisions, and mentored engineers. At university I taught and mentored more than 400 students in how real software teams deliver.</p>
+        </li>
+        <li class="habit">
+          <h3>Translate between product and engineering</h3>
+          <p>I work closely with Product to turn business requirements into scalable designs and delivery plans that teams can actually execute.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AI: the ink band -->
+  <section class="section ai" id="ai" aria-labelledby="ai-title">
+    <div class="container">
+      <div class="ai-head">
+        <h2 id="ai-title">AI in the delivery loop, held to the same quality bar</h2>
+        <p class="ai-lead">I introduce spec-driven development and AI-assisted workflows into real delivery teams, aiming for measurably faster engineering without lowering the quality bar.</p>
+      </div>
+      <div class="ai-points">
+        <div>
+          <h3>Specs come first</h3>
+          <p>Work starts from a written specification, so assistants have something precise to implement and reviewers have something to check the result against.</p>
+        </div>
+        <div>
+          <h3>Repeatable, not heroic</h3>
+          <p>I built reusable AI tooling, agent skills, configurations, and workflows, so the benefit is part of day-to-day development rather than one person’s habit.</p>
+        </div>
+        <div>
+          <h3>Tools I use</h3>
+          <p>Claude Code, GitHub Copilot, and LLMs more broadly, with prompt engineering and agent skills as working practice. I hold the <a href="https://www.credly.com/badges/d105eb34-c3e3-468a-9838-5fa120b14186" rel="noopener">Claude Certified Architect (Foundations)</a> certification.</p>
+        </div>
+      </div>
+      <p class="ai-scope">Production practice, not side experiments.</p>
+    </div>
+  </section>
+
+  <!-- STACK: a table, head beside it -->
+  <section class="section stack-section" id="stack" aria-labelledby="stack-title">
+    <div class="container stack-inner">
+      <h2 id="stack-title">Tools and technologies</h2>
+      <dl class="stack">
+        <div><dt>Core</dt><dd>C#, .NET, ASP.NET Core, Entity Framework Core, SQL, PostgreSQL, Microsoft SQL Server, MongoDB, REST and OpenAPI, SignalR</dd></div>
+        <div><dt>Cloud</dt><dd>Azure (AKS, Functions, App Service, Service Bus, Storage, Data Factory, DevOps), Docker, CI/CD, Terraform, Bicep, ARM templates</dd></div>
+        <div><dt>Architecture</dt><dd>Distributed systems, microservices, event-driven architecture, domain-driven design, CQRS, Clean Architecture, resilience patterns</dd></div>
+        <div><dt>Quality and security</dt><dd>xUnit, integration testing, OpenTelemetry, OAuth 2.0, OpenID Connect, RBAC, Azure Managed Identities</dd></div>
+        <div><dt>Also</dt><dd>TypeScript, JavaScript, Angular, Bash</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ABOUT: the photograph beside the prose -->
+  <section class="section about" id="about" aria-labelledby="about-title">
+    <div class="container about-inner">
+      <figure class="about-art">
+        <img src="/assets/portrait.jpg" width="800" height="960" loading="lazy" decoding="async" alt="Dino Cosic smiling with arms crossed, in an office corridor">
+      </figure>
+      <div class="about-copy">
+        <h2 id="about-title">About me</h2>
+        <p>I’m a software engineer from Sarajevo. Curiosity about how things work turned into a career building systems that scale, and then into leading teams and shaping the architecture of platforms that businesses depend on.</p>
+        <p>I like owning a system end to end: architecture and system design, then implementation, deployment, and production support, and improving it once it’s live. Most of that work has been with cross-functional teams in distributed organizations, and lately it has meant bringing AI into how those teams deliver.</p>
+        <dl class="about-facts">
+          <div class="about-facts-lead">
+            <dt>AI engineering</dt>
+            <dd>At Symphony I introduced spec-driven development and AI-assisted workflows that raised engineering velocity by about 30% without lowering the quality bar, then built the reusable AI tooling, agent skills, and configurations that made it part of everyday development rather than one person’s habit. <a href="https://flagrm.com" rel="noopener">flagrm</a>, my open-source CLI, takes the same approach in public: AI coding agents remove feature flags while it checks the build and tests until they pass.</dd>
+          </div>
+          <div>
+            <dt>Education</dt>
+            <dd>M.Sc. and B.Sc. in Computer Science from the Faculty of Electrical Engineering, University of Sarajevo. My master’s thesis applied machine learning methods to cancer diagnosis; my bachelor’s covered a chatbot with social media integration for e-commerce.</dd>
+          </div>
+          <div>
+            <dt>Teaching</dt>
+            <dd>From 2022 to 2026 I taught there part-time alongside my engineering work, mentoring students in software engineering, Agile, Git, .NET, and Azure.</dd>
+          </div>
+          <div>
+            <dt>Credentials</dt>
+            <dd>I hold the <a href="https://www.credly.com/badges/3a66471c-0985-4643-8c92-6bbec9d6642b" rel="noopener">Microsoft Certified: Azure Fundamentals</a> and <a href="https://www.credly.com/badges/d105eb34-c3e3-468a-9838-5fa120b14186" rel="noopener">Claude Certified Architect (Foundations)</a> certifications, and have completed Anthropic’s <a href="https://verify.skilljar.com/c/3n284wtwjoyv" rel="noopener">Building with the Claude API</a> and <a href="https://verify.skilljar.com/c/6uotc9hhh223" rel="noopener">Claude Code in Action</a> courses.</dd>
+          </div>
+          <div class="about-writing">
+            <dt>Writing</dt>
+            <dd>I write on <a href="{{ site.mediumProfile }}" rel="noopener">Medium</a> about LLMs, Azure Functions, Docker, and .NET practices. Several pieces began as team onboarding and knowledge-sharing material.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT: the question, then the ways to answer it -->
+  <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title">Working on a system that outgrew its design?</h2>
+      <div class="contact-body">
+        <p class="lead contact-lede">Write to me. I’m always glad to talk through architecture, modernization, or an interesting problem.</p>
+        <div class="contact-side">
+          <p class="contact-actions">
+            <a class="btn btn-primary" href="mailto:{{ site.email }}">Email me</a>
+            <button class="btn copy" type="button" data-copy="{{ site.email }}" hidden>
+              <span class="copy-glyph" aria-hidden="true">
+                <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="12" height="12" rx="1.5"/><path d="M15.5 8.5V5a1.5 1.5 0 0 0-1.5-1.5H5A1.5 1.5 0 0 0 3.5 5v9A1.5 1.5 0 0 0 5 15.5h3.5"/></svg>
+                <svg class="copy-done" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 12.5l5 5 10-11"/></svg>
+              </span>
+              <span class="copy-label">Copy email</span>
+            </button>
+            <a class="btn" href="{{ resumeHref }}">Request my résumé</a>
+            <span class="copy-status" role="status"></span>
+          </p>
+          <ul class="contact-links">
+            <li><a href="https://www.linkedin.com/in/dino-cosic" rel="noopener">LinkedIn</a></li>
+            <li><a href="{{ site.mediumProfile }}" rel="noopener">Medium</a></li>
+            <li><a href="https://x.com/Dino_Codes" rel="noopener">X</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>

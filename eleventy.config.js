@@ -16,8 +16,8 @@ const POSTS_GLOB = 'src/blog/posts/*.md';
 const showDrafts = process.env.ELEVENTY_RUN_MODE === 'serve' || process.env.BLOG_DRAFTS === '1';
 
 export default function (eleventyConfig) {
-  // The portfolio itself is plain HTML, CSS and JS. It is copied through untouched.
-  eleventyConfig.addPassthroughCopy({ 'index.html': 'index.html', '404.html': '404.html', css: 'css', js: 'js', assets: 'assets' });
+  // Stylesheets, scripts and images are copied through untouched. Every page is a template in src/.
+  eleventyConfig.addPassthroughCopy({ css: 'css', js: 'js', assets: 'assets' });
   eleventyConfig.addWatchTarget('./css/');
   eleventyConfig.addWatchTarget('./js/');
   eleventyConfig.addWatchTarget('./lib/');
@@ -56,6 +56,8 @@ export default function (eleventyConfig) {
     }
     return posts;
   });
+  // The homepage on its own, so the sitemap can read its last-modified date.
+  eleventyConfig.addCollection('home', (collectionApi) => collectionApi.getFilteredByGlob('src/index.njk'));
   eleventyConfig.addCollection('blogTags', (collectionApi) => buildTagIndex(getPosts(collectionApi)));
 
   eleventyConfig.addFilter('readableDate', readableDate);

@@ -9,10 +9,10 @@ export default {
   author: { name: 'Dino Cosic', x: '@Dino_Codes' },
   email: 'dino.cosic95@gmail.com',
   ogImage: '/assets/og.png',
+  ogImageSize: { width: 1200, height: 630 },
+  googleSiteVerification: '9rrFKu-za7_JffM9mlg_sImdzfKeu_5OdozHmUFJAsU',
   analyticsId: 'G-JBLGCJDQLL',
   mediumProfile: 'https://medium.com/@dino.cosic',
-  // Date of the last meaningful change to index.html, used in the sitemap.
-  homeLastmod: '2026-11-11',
   blog: {
     title: 'Writing',
     description: 'Notes from production work: software architecture, legacy modernization, .NET and Azure, and AI-assisted engineering.',
