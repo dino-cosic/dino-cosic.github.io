@@ -20,14 +20,14 @@
   <title>{{ metaTitle }}</title>
   <meta name="description" content="{{ metaDescription }}">
   <meta name="author" content="{{ site.author.name }}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="{{ robots or 'index, follow' }}">
   <meta name="theme-color" content="#ecede9">
   <link rel="canonical" href="{{ canonical }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.author.name }}, {{ site.blog.title }}" href="{{ site.blog.feedPath }}">
 
   <meta property="og:site_name" content="{{ site.author.name }}">
   <meta property="og:type" content="{{ ogType or 'website' }}">
-  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:url" content="{{ canonical }}">
   <meta property="og:title" content="{{ title or site.title }}">
   <meta property="og:description" content="{{ metaDescription }}">
   <meta property="og:image" content="{{ shareImage }}">

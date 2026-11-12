@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import MarkdownIt from 'markdown-it';
-import { blogPostingJsonLd, buildTagIndex, buildToc, readingTime, relatedPosts } from '../lib/blog.js';
+import { blogPostingJsonLd, buildTagIndex, buildToc, lastModified, readingTime, relatedPosts } from '../lib/blog.js';
 import { configureMarkdown } from '../lib/markdown.js';
 
 const post = (url, date, tags) => ({ url, date: new Date(date), data: { title: url, tags } });
@@ -52,6 +52,18 @@ test('related posts are ranked by shared tags, then recency, and exclude the cur
 test('the tag index groups posts under one slug per tag', () => {
   const index = buildTagIndex([post('/a/', '2026-01-01', ['.NET', 'AI']), post('/b/', '2026-02-01', ['AI'])]);
   assert.deepEqual(index.map((t) => [t.slug, t.posts.length]), [['ai', 2], ['dotnet', 1]]);
+});
+
+test('a tag is indexed by search engines only once it has two articles', () => {
+  const index = buildTagIndex([post('/a/', '2026-01-01', ['.NET', 'AI']), post('/b/', '2026-02-01', ['AI'])]);
+  assert.deepEqual(index.map((t) => [t.slug, t.indexed]), [['ai', true], ['dotnet', false]]);
+});
+
+test('lastModified is the latest updated-or-published date across posts', () => {
+  const a = { date: new Date('2026-03-01'), data: { updated: '2026-05-01' } };
+  const b = { date: new Date('2026-04-01'), data: {} };
+  assert.equal(lastModified([b, a]).toISOString(), '2026-05-01T00:00:00.000Z');
+  assert.equal(lastModified([]), null);
 });
 
 test('structured data is valid JSON and cannot close its script element', () => {

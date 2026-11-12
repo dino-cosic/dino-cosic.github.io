@@ -11,7 +11,7 @@ eleventyExcludeFromCollections: true
   <url>
     <loc>{{ site.url }}/blog/</loc>
     {%- if collections.posts.length %}
-    <lastmod>{{ (collections.posts[0].data.updated or collections.posts[0].date) | isoDate }}</lastmod>
+    <lastmod>{{ collections.posts | lastModified | isoDate }}</lastmod>
     {%- endif %}
   </url>
   {%- for post in collections.posts %}
@@ -20,9 +20,13 @@ eleventyExcludeFromCollections: true
     <lastmod>{{ (post.data.updated or post.date) | isoDate }}</lastmod>
   </url>
   {%- endfor %}
+  {#- Tags with a single article are marked noindex, so they stay out of the sitemap too. #}
   {%- for tag in collections.blogTags %}
+  {%- if tag.indexed %}
   <url>
     <loc>{{ site.url }}/blog/tags/{{ tag.slug }}/</loc>
+    <lastmod>{{ tag.posts | lastModified | isoDate }}</lastmod>
   </url>
+  {%- endif %}
   {%- endfor %}
 </urlset>

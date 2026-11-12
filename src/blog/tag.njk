@@ -9,6 +9,7 @@ eleventyExcludeFromCollections: true
 eleventyComputed:
   title: "Articles on {{ tag.name }}"
   description: "Articles by Dino Cosic tagged {{ tag.name }}."
+  robots: "{{ 'index, follow' if tag.indexed else 'noindex, follow' }}"
 ---
 {%- from "partials/entries.njk" import entries, tagNav, search -%}
 <section class="blog-index container" aria-labelledby="blog-title">

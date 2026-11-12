@@ -124,6 +124,12 @@ test('a tag page lists only the articles with that tag', () => {
   assert.match(html, /<title>Articles on \.NET, Dino Cosic<\/title>/);
 });
 
+test('a tag page with one article is kept out of search results; a busier one is indexed', () => {
+  assert.match(read('blog/tags/dotnet/index.html'), /<meta name="robots" content="noindex, follow">/);
+  assert.match(read('blog/tags/zz-test-tag/index.html'), /<meta name="robots" content="index, follow">/);
+  assert.match(read('blog/zz-test-published/index.html'), /<meta name="robots" content="index, follow">/);
+});
+
 test('an article page carries its content, contents list and metadata', () => {
   const html = read('blog/zz-test-published/index.html');
   assert.match(html, /<title>Build test: published article, Dino Cosic<\/title>/);
@@ -152,7 +158,10 @@ test('an article page carries its content, contents list and metadata', () => {
 });
 
 test('an explicit canonicalUrl is respected', () => {
-  assert.match(read('blog/zz-test-canonical/index.html'), /<link rel="canonical" href="https:\/\/elsewhere\.example\/original\/">/);
+  const html = read('blog/zz-test-canonical/index.html');
+  assert.match(html, /<link rel="canonical" href="https:\/\/elsewhere\.example\/original\/">/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/elsewhere\.example\/original\/">/);
+  assert.match(read('blog/zz-test-published/index.html'), new RegExp(`<meta property="og:url" content="${SITE_URL}/blog/zz-test-published/">`));
 });
 
 test('a quoted "updated" date renders like an unquoted one', () => {
@@ -180,6 +189,9 @@ test('the feed, sitemap and robots.txt use absolute URLs on the configured domai
   const sitemap = read('sitemap.xml');
   for (const url of ['/', '/blog/', '/blog/zz-test-published/', '/blog/tags/zz-test-tag/']) assert.ok(sitemap.includes(`<loc>${SITE_URL}${url}</loc>`), `sitemap is missing ${url}`);
   assert.match(sitemap, /<loc>https:\/\/example\.test\/blog\/zz-test-published\/<\/loc>\s*<lastmod>2020-02-03<\/lastmod>/);
+  // A tag's lastmod is its newest change; tags kept out of search results are left out of the sitemap.
+  assert.match(sitemap, /<loc>https:\/\/example\.test\/blog\/tags\/zz-test-tag\/<\/loc>\s*<lastmod>2020-02-03<\/lastmod>/);
+  assert.ok(!sitemap.includes('/blog/tags/dotnet/'), 'a one-article tag should not be in the sitemap');
   assert.match(read('robots.txt'), new RegExp(`Sitemap: ${SITE_URL}/sitemap.xml`));
 });
 
