@@ -113,3 +113,14 @@ test('generated frontmatter is a draft and passes validation once tags are added
   assert.deepEqual(validateArticle({ ...article, draft: true }, { body: article.markdown }), []);
   assert.match(renderArticleFile(convert(MODERN)), /\ntags: \[\]\n/);
 });
+
+test('line breaks inside a paragraph survive as hard breaks', () => {
+  const html = `<html><head><title>Breaks</title></head><body><article><section data-field="body" class="e-content">
+<p>¹ First reference<br> ² Second <em>reference</em><br>³ Third reference<br></p>
+<p>Next paragraph.</p>
+<pre data-code-block-lang="bash"><span class="pre--content">echo one \\<br>  two</span></pre>
+</section></article></body></html>`;
+  const { markdown } = convertMediumPost(html, '2024-01-01_Breaks-abcdef123456.html');
+  assert.match(markdown, /^¹ First reference\\\n² Second \*reference\*\\\n³ Third reference\n\nNext paragraph\.$/m);
+  assert.match(markdown, /```bash\necho one \\\n  two\n```/, 'code blocks keep their own line breaks');
+});
