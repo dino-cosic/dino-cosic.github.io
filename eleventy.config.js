@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { feedPlugin } from '@11ty/eleventy-plugin-rss';
 import syntaxHighlight from '@11ty/eleventy-plugin-syntaxhighlight';
 import { validateArticle, validateArticles } from './lib/article-schema.js';
-import { absoluteUrl, blogPostingJsonLd, buildTagIndex, buildToc, isoDate, readableDate, readingTime, relatedPosts, tagSlug } from './lib/blog.js';
+import { absoluteUrl, blogPostingJsonLd, buildTagIndex, buildToc, isoDate, isoDateTime, readableDate, readingTime, relatedPosts, tagSlug } from './lib/blog.js';
 import { configureMarkdown } from './lib/markdown.js';
 import site from './src/_data/site.js';
 
@@ -59,6 +59,8 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter('readableDate', readableDate);
   eleventyConfig.addFilter('isoDate', isoDate);
+  // Frontmatter dates arrive as Date objects, or as strings when quoted; both filters accept either.
+  eleventyConfig.addFilter('isoDateTime', isoDateTime);
   eleventyConfig.addFilter('readingTime', readingTime);
   eleventyConfig.addFilter('toc', buildToc);
   eleventyConfig.addFilter('tagSlug', tagSlug);

@@ -23,6 +23,12 @@ test('markdown headings get unique ids and feed a nested table of contents', () 
   ]);
 });
 
+test('a heading whose own slug was taken by a numbered duplicate still gets a unique id', () => {
+  const md = configureMarkdown(new MarkdownIt({ html: true }));
+  const ids = [...md.render('## A\n\n## A\n\n## A-2\n\n## A\n').matchAll(/id="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(ids, ['a', 'a-2', 'a-2-2', 'a-3']);
+});
+
 test('markdown images become lazy figures with captions, tables scroll, external links are marked', () => {
   const md = configureMarkdown(new MarkdownIt({ html: true }));
   const html = md.render('![Alt text](/assets/blog/a.png "A caption")\n\n| A | B |\n| - | - |\n| 1 | 2 |\n\n[out](https://example.com) [in](/blog/)\n');

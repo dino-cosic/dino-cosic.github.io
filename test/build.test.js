@@ -49,6 +49,7 @@ Text.
 title: "Build test: canonical elsewhere"
 description: "A fixture whose canonical URL points at another site."
 date: 2020-01-03
+updated: "2020-01-20"
 tags:
   - ZZ Test Tag
 canonicalUrl: "https://elsewhere.example/original/"
@@ -152,6 +153,13 @@ test('an article page carries its content, contents list and metadata', () => {
 
 test('an explicit canonicalUrl is respected', () => {
   assert.match(read('blog/zz-test-canonical/index.html'), /<link rel="canonical" href="https:\/\/elsewhere\.example\/original\/">/);
+});
+
+test('a quoted "updated" date renders like an unquoted one', () => {
+  const html = read('blog/zz-test-canonical/index.html');
+  assert.match(html, /<meta property="article:published_time" content="2020-01-03T00:00:00\.000Z">/);
+  assert.match(html, /<meta property="article:modified_time" content="2020-01-20T00:00:00\.000Z">/);
+  assert.match(html, /<time datetime="2020-01-20">20 January 2020<\/time>/);
 });
 
 test('every internal link and asset on blog pages resolves to a generated file', () => {

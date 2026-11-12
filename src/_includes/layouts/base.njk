@@ -32,9 +32,9 @@
   <meta property="og:description" content="{{ metaDescription }}">
   <meta property="og:image" content="{{ shareImage }}">
   {%- if ogType == 'article' %}
-  <meta property="article:published_time" content="{{ page.date.toISOString() }}">
+  <meta property="article:published_time" content="{{ page.date | isoDateTime }}">
   {%- if updated %}
-  <meta property="article:modified_time" content="{{ updated.toISOString() }}">
+  <meta property="article:modified_time" content="{{ updated | isoDateTime }}">
   {%- endif %}
   <meta property="article:author" content="{{ site.author.name }}">
   {%- for tag in tags %}
