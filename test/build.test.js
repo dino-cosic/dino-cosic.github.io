@@ -13,7 +13,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const eleventy = path.join(root, 'node_modules/@11ty/eleventy/cmd.cjs');
 // Everything the production build reads. If the build starts reading something else, the sandbox
 // build fails, which is the cue to add it here.
-const SITE_FILES = ['package.json', 'eleventy.config.js', 'src', 'lib', 'css', 'js', 'assets'];
+const SITE_FILES = ['package.json', 'eleventy.config.js', 'src', 'lib'];
 const SITE_URL = 'https://example.test';
 
 const fixtures = {
@@ -111,7 +111,7 @@ test('the test build never writes to the repository', () => {
 
 test('stylesheets, scripts and images are copied through unchanged', () => {
   for (const file of ['css/site.css', 'css/tokens.css', 'js/main.js', 'js/hero-scene.js', 'assets/og.png']) {
-    assert.deepEqual(fs.readFileSync(path.join(out, file)), fs.readFileSync(path.join(root, file)), `${file} differs from its source`);
+    assert.deepEqual(fs.readFileSync(path.join(out, file)), fs.readFileSync(path.join(root, 'src', file)), `${file} differs from its source`);
   }
 });
 

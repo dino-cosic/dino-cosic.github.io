@@ -7,7 +7,8 @@ import { absoluteUrl, blogPostingJsonLd, buildTagIndex, buildToc, isoDate, isoDa
 import { configureMarkdown } from './lib/markdown.js';
 import site from './src/_data/site.js';
 
-const rootDir = path.dirname(fileURLToPath(import.meta.url));
+// Root-relative URLs such as /assets/og.png map to files in src/.
+const siteDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'src');
 const POSTS_GLOB = 'src/blog/posts/*.md';
 
 // Drafts render while writing (`npm run dev`) and are left out of every production build.
@@ -17,9 +18,9 @@ const showDrafts = process.env.ELEVENTY_RUN_MODE === 'serve' || process.env.BLOG
 
 export default function (eleventyConfig) {
   // Stylesheets, scripts and images are copied through untouched. Every page is a template in src/.
-  eleventyConfig.addPassthroughCopy({ css: 'css', js: 'js', assets: 'assets' });
-  eleventyConfig.addWatchTarget('./css/');
-  eleventyConfig.addWatchTarget('./js/');
+  eleventyConfig.addPassthroughCopy('src/css');
+  eleventyConfig.addPassthroughCopy('src/js');
+  eleventyConfig.addPassthroughCopy('src/assets');
   eleventyConfig.addWatchTarget('./lib/');
 
   eleventyConfig.addPlugin(syntaxHighlight);
@@ -48,10 +49,10 @@ export default function (eleventyConfig) {
     const posts = getPosts(collectionApi);
     const toCheck = (post) => ({ file: post.inputPath, data: post.data, body: post.rawInput, url: post.url });
 
-    validateArticles(posts.filter((p) => !p.data.draft).map(toCheck), { rootDir });
+    validateArticles(posts.filter((p) => !p.data.draft).map(toCheck), { siteDir });
     // A draft is work in progress: say what is missing, but keep the dev server running.
     for (const draft of posts.filter((p) => p.data.draft)) {
-      const errors = validateArticle(draft.data, { body: draft.rawInput, rootDir });
+      const errors = validateArticle(draft.data, { body: draft.rawInput, siteDir });
       if (errors.length) console.warn(`[blog] Draft ${draft.inputPath} is not ready to publish:\n${errors.map((e) => `  - ${e}`).join('\n')}`);
     }
     return posts;

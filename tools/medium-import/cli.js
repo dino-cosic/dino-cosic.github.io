@@ -26,7 +26,7 @@ Options
   --no-images           Do not download images; articles keep pointing at Medium.
   --help                Show this text.
 
-Articles are written to src/blog/posts with "draft: true". Images go to assets/blog/<slug>/.
+Articles are written to src/blog/posts with "draft: true". Images go to src/assets/blog/<slug>/.
 The report is written to reports/medium-import-report.md.`;
 
 const FLAGS = new Set(['--dry-run', '--overwrite', '--yes', '--include-drafts', '--include-responses', '--no-images', '--help']);
@@ -57,7 +57,7 @@ try {
   const report = await runImport({
     exportDir: path.resolve(positional[0] ?? 'medium-export'),
     postsDir: path.join(root, 'src/blog/posts'),
-    assetsDir: path.join(root, 'assets/blog'),
+    assetsDir: path.join(root, 'src/assets/blog'),
     manifestPath: path.join(root, 'tools/medium-import/manifest.json'),
     dryRun: flags.has('--dry-run'),
     overwrite: flags.has('--overwrite'),

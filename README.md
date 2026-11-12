@@ -21,10 +21,7 @@ Node 20 or newer.
 ## Layout
 
 ```
-css/                     tokens.css, base.css, site.css (portfolio) and blog.css (blog pages only)
-js/                      chrome.js (header, shared), main.js (homepage), blog.js (blog), hero-scene.js, portrait.js
-assets/                  images; article images live in assets/blog/<article-slug>/
-src/                     everything Eleventy renders
+src/                     everything the site is built from; nothing outside src/ is published
   _data/site.js          site URL, author, email, analytics ID, blog title and description
   index.njk              the homepage
   404.njk                the "page not found" page
@@ -33,6 +30,9 @@ src/                     everything Eleventy renders
   blog/tag.njk           /blog/tags/<tag>/
   blog/posts/*.md        the articles
   sitemap.njk, robots.njk
+  css/                   tokens.css, base.css, site.css (all pages) and blog.css (blog pages only)
+  js/                    chrome.js (header, shared), main.js (homepage), blog.js (blog), hero-scene.js, portrait.js
+  assets/                images; article images live in src/assets/blog/<article-slug>/
 lib/                     build helpers: slugs, frontmatter validation, contents list, related articles
 tools/medium-import/     the Medium importer
 tools/build_portrait.py  regenerates the hero portrait partial
@@ -102,7 +102,7 @@ A draft (`draft: true`) appears under `npm run dev`, marked as a draft, and is l
 
 ### 2. Add images
 
-Put images in `assets/blog/<article-slug>/` and reference them with a root-relative path:
+Put images in `src/assets/blog/<article-slug>/` and reference them with a root-relative path:
 
 ```md
 ![What the image shows](/assets/blog/spec-driven-development/pipeline.webp "Optional caption shown under the image")
@@ -146,7 +146,7 @@ npm run preview:drafts   # the same, with drafts, to check one before publishing
 
 What it does:
 
-- Reads only the export files. It does not scrape Medium or use any API. The one thing it fetches is the images your articles reference, which it saves to `assets/blog/<slug>/` (`--no-images` turns that off).
+- Reads only the export files. It does not scrape Medium or use any API. The one thing it fetches is the images your articles reference, which it saves to `src/assets/blog/<slug>/` (`--no-images` turns that off).
 - Writes one Markdown file per published story to `src/blog/posts/`, with title, description, date, slug, `mediumUrl` and any tags found. Medium's export usually carries no tags, so expect to add them.
 - Every imported article is written with `draft: true`. Nothing is published until you have read it and switched the flag.
 - Skips unpublished Medium drafts and short posts that look like replies to other people's stories (`--include-drafts`, `--include-responses` to import them anyway).
@@ -208,4 +208,4 @@ The site URL used for canonical links, the feed and the sitemap comes from the P
 
 `npm test` covers frontmatter validation, slug generation, Markdown rendering helpers, Medium HTML conversion, duplicate detection and reruns of the importer, and a real production build (routes, metadata, drafts excluded, the build failing on invalid metadata). The build test copies the files the site is built from into a temporary folder, adds its own articles there and builds that copy, so it never writes to the repository; a test checks this.
 
-Tests and tools stay out of the published site: Eleventy reads only `src/`, and the passthrough copy takes only `css/`, `js/` and `assets/`. In the deploy workflow, tests run in a separate job on their own checkout, and the site is built from a clean checkout that tests never touched. The deploy needs both jobs to pass. The Medium importer's only output into the site is the articles it imports (as drafts in `src/blog/posts/`) and their images (in `assets/blog/`); its manifest stays in `tools/medium-import/`.
+Tests and tools stay out of the published site: Eleventy reads only `src/`. Pages are templates there, and `src/css/`, `src/js/` and `src/assets/` are copied through unchanged. In the deploy workflow, tests run in a separate job on their own checkout, and the site is built from a clean checkout that tests never touched. The deploy needs both jobs to pass. The Medium importer's only output into the site is the articles it imports (as drafts in `src/blog/posts/`) and their images (in `src/assets/blog/`); its manifest stays in `tools/medium-import/`.

@@ -53,10 +53,10 @@ test('tags that collide on the same URL are rejected', () => {
 });
 
 test('a missing local cover image is reported, a remote one is accepted', () => {
-  const root = new URL('..', import.meta.url).pathname;
-  assert.match(validateArticle({ ...valid(), coverImage: '/assets/blog/nope.webp' }, { rootDir: root })[0], /does not exist/);
-  assert.deepEqual(validateArticle({ ...valid(), coverImage: '/assets/og.png' }, { rootDir: root }), []);
-  assert.deepEqual(validateArticle({ ...valid(), coverImage: 'https://example.com/a.png' }, { rootDir: root }), []);
+  const siteDir = new URL('../src', import.meta.url).pathname;
+  assert.match(validateArticle({ ...valid(), coverImage: '/assets/blog/nope.webp' }, { siteDir })[0], /does not exist/);
+  assert.deepEqual(validateArticle({ ...valid(), coverImage: '/assets/og.png' }, { siteDir }), []);
+  assert.deepEqual(validateArticle({ ...valid(), coverImage: 'https://example.com/a.png' }, { siteDir }), []);
   assert.match(validateArticle({ ...valid(), coverImage: 'assets/a.png' })[0], /must start with "\/"/);
 });
 
