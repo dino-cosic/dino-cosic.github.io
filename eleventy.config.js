@@ -11,7 +11,8 @@ const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const POSTS_GLOB = 'src/blog/posts/*.md';
 
 // Drafts render while writing (`npm run dev`) and are left out of every production build.
-// BLOG_DRAFTS=1 exists for the test suite; the deploy workflow never sets it.
+// BLOG_DRAFTS=1 (`npm run preview:drafts`) checks drafts in a production-style build locally;
+// the deploy workflow never sets it.
 const showDrafts = process.env.ELEVENTY_RUN_MODE === 'serve' || process.env.BLOG_DRAFTS === '1';
 
 export default function (eleventyConfig) {

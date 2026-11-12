@@ -11,6 +11,7 @@ npm install              # once
 npm run dev              # local site with live reload at http://localhost:8080, drafts included
 npm run build            # production build into dist/ (drafts excluded)
 npm run preview          # production build, then serve dist/ at http://localhost:8080
+npm run preview:drafts   # the same, with drafts included (never used by the deploy)
 npm test                 # unit tests, Medium conversion tests and a full build check
 npm run migrate:medium   # import articles from a Medium export (see below)
 ```
@@ -120,6 +121,7 @@ Open <http://localhost:8080/blog/>. Pages reload when Markdown, templates, CSS o
 ```sh
 npm run build      # writes dist/
 npm run preview    # the same build, served the way GitHub Pages serves it
+npm run preview:drafts   # the same, with drafts, to check one before publishing
 ```
 
 `dist/` is what gets deployed. It is gitignored.
@@ -202,4 +204,6 @@ The site URL used for canonical links, the feed and the sitemap comes from the P
 
 ## Tests
 
-`npm test` covers frontmatter validation, slug generation, Markdown rendering helpers, Medium HTML conversion, duplicate detection and reruns of the importer, and a real production build (routes, metadata, drafts excluded, the build failing on invalid metadata). The build test adds its own temporary articles to `src/blog/posts/` while it runs and removes them afterwards.
+`npm test` covers frontmatter validation, slug generation, Markdown rendering helpers, Medium HTML conversion, duplicate detection and reruns of the importer, and a real production build (routes, metadata, drafts excluded, the build failing on invalid metadata). The build test copies the files the site is built from into a temporary folder, adds its own articles there and builds that copy, so it never writes to the repository; a test checks this.
+
+Tests and tools stay out of the published site: Eleventy reads only `src/`, and the passthrough copy takes only `index.html`, `404.html`, `css/`, `js/` and `assets/`. In the deploy workflow, tests run in a separate job on their own checkout, and the site is built from a clean checkout that tests never touched. The deploy needs both jobs to pass. The Medium importer's only output into the site is the articles it imports (as drafts in `src/blog/posts/`) and their images (in `assets/blog/`); its manifest stays in `tools/medium-import/`.

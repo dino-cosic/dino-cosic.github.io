@@ -1,5 +1,6 @@
-// Runs the real Eleventy build into a temporary folder. The test adds its own articles to
-// src/blog/posts for the duration of the run, so it does not depend on what is published.
+// Runs the real Eleventy build in a sandbox: a temporary copy of the files the site is built from,
+// with this test's own articles added. The repository itself is never written to, so test
+// articles cannot reach src/, dist/ or a deploy.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -9,8 +10,10 @@ import { after, before, test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const posts = path.join(root, 'src/blog/posts');
 const eleventy = path.join(root, 'node_modules/@11ty/eleventy/cmd.cjs');
+// Everything the production build reads. If the build starts reading something else, the sandbox
+// build fails, which is the cue to add it here.
+const SITE_FILES = ['package.json', 'eleventy.config.js', 'index.html', '404.html', 'src', 'lib', 'css', 'js', 'assets'];
 const SITE_URL = 'https://example.test';
 
 const fixtures = {
@@ -70,25 +73,41 @@ Draft body.
 };
 const INVALID = 'zz-test-invalid.md';
 
+let sandbox;
+let posts;
+let out;
+
 function build(outDir, env = {}) {
   return spawnSync(process.execPath, [eleventy, `--output=${outDir}`, '--quiet'], {
-    cwd: root, encoding: 'utf8', env: { ...process.env, SITE_URL, BLOG_DRAFTS: '', ...env },
+    cwd: sandbox, encoding: 'utf8', env: { ...process.env, SITE_URL, BLOG_DRAFTS: '', ...env },
   });
 }
 
-let out;
 const read = (file) => fs.readFileSync(path.join(out, file), 'utf8');
 const has = (file) => fs.existsSync(path.join(out, file));
-const cleanup = () => { for (const name of [...Object.keys(fixtures), INVALID]) fs.rmSync(path.join(posts, name), { force: true }); };
+
+// A fingerprint of the real articles folder, compared before and after the run.
+const realPosts = path.join(root, 'src/blog/posts');
+const snapshot = () => fs.readdirSync(realPosts).sort().map((name) => `${name}:${fs.statSync(path.join(realPosts, name)).mtimeMs}`);
+let before_;
 
 before(() => {
-  cleanup();
+  before_ = snapshot();
+  sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'site-sandbox-'));
+  for (const name of SITE_FILES) fs.cpSync(path.join(root, name), path.join(sandbox, name), { recursive: true });
+  fs.symlinkSync(path.join(root, 'node_modules'), path.join(sandbox, 'node_modules'), 'dir');
+  posts = path.join(sandbox, 'src/blog/posts');
   for (const [name, content] of Object.entries(fixtures)) fs.writeFileSync(path.join(posts, name), content);
-  out = fs.mkdtempSync(path.join(os.tmpdir(), 'site-build-'));
+  out = path.join(sandbox, 'dist');
   const result = build(out);
   assert.equal(result.status, 0, result.stderr || result.stdout);
 });
-after(() => { cleanup(); fs.rmSync(out, { recursive: true, force: true }); });
+after(() => { fs.rmSync(sandbox, { recursive: true, force: true }); });
+
+test('the test build never writes to the repository', () => {
+  assert.deepEqual(snapshot(), before_);
+  for (const name of Object.keys(fixtures)) assert.ok(!fs.existsSync(path.join(realPosts, name)), `${name} leaked into src/blog/posts`);
+});
 
 test('the existing portfolio is copied through unchanged', () => {
   for (const file of ['index.html', '404.html', 'css/site.css', 'css/tokens.css', 'js/main.js', 'js/hero-scene.js', 'assets/og.png']) {
