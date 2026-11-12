@@ -25,7 +25,7 @@ updated: 2020-02-03
 slug: "zz-test-published"
 tags:
   - ZZ Test Tag
-  - .NET
+  - ZZ Solo .NET
 mediumUrl: "https://medium.com/@dino.cosic/build-test-aaaabbbbcccc"
 draft: false
 ---
@@ -152,7 +152,7 @@ test('the sitemap lists the homepage with a real date', () => {
 });
 
 test('blog routes are generated', () => {
-  for (const file of ['blog/index.html', 'blog/zz-test-published/index.html', 'blog/zz-test-canonical/index.html', 'blog/tags/zz-test-tag/index.html', 'blog/tags/dotnet/index.html', 'blog/feed.xml', 'sitemap.xml', 'robots.txt', 'css/blog.css', 'js/blog.js']) {
+  for (const file of ['blog/index.html', 'blog/zz-test-published/index.html', 'blog/zz-test-canonical/index.html', 'blog/tags/zz-test-tag/index.html', 'blog/tags/zz-solo-dotnet/index.html', 'blog/feed.xml', 'sitemap.xml', 'robots.txt', 'css/blog.css', 'js/blog.js']) {
     assert.ok(has(file), `${file} was not generated`);
   }
 });
@@ -173,14 +173,14 @@ test('the listing shows each article as plain HTML', () => {
 });
 
 test('a tag page lists only the articles with that tag', () => {
-  const html = read('blog/tags/dotnet/index.html');
+  const html = read('blog/tags/zz-solo-dotnet/index.html');
   assert.match(html, /Build test: published article/);
   assert.ok(!html.includes('canonical elsewhere'));
-  assert.match(html, /<title>Articles on \.NET, Dino Cosic<\/title>/);
+  assert.match(html, /<title>Articles on ZZ Solo \.NET, Dino Cosic<\/title>/);
 });
 
 test('a tag page with one article is kept out of search results; a busier one is indexed', () => {
-  assert.match(read('blog/tags/dotnet/index.html'), /<meta name="robots" content="noindex, follow">/);
+  assert.match(read('blog/tags/zz-solo-dotnet/index.html'), /<meta name="robots" content="noindex, follow">/);
   assert.match(read('blog/tags/zz-test-tag/index.html'), /<meta name="robots" content="index, follow">/);
   assert.match(read('blog/zz-test-published/index.html'), /<meta name="robots" content="index, follow">/);
 });
@@ -227,7 +227,7 @@ test('a quoted "updated" date renders like an unquoted one', () => {
 });
 
 test('every internal link and asset resolves to a generated file', () => {
-  const pages = ['index.html', '404.html', 'blog/index.html', 'blog/zz-test-published/index.html', 'blog/tags/dotnet/index.html'];
+  const pages = ['index.html', '404.html', 'blog/index.html', 'blog/zz-test-published/index.html', 'blog/tags/zz-solo-dotnet/index.html'];
   for (const page of pages) {
     for (const [, url] of read(page).matchAll(/(?:href|src)="(\/[^"#?]*)/g)) {
       const target = url.endsWith('/') ? `${url}index.html` : url;
@@ -246,7 +246,7 @@ test('the feed, sitemap and robots.txt use absolute URLs on the configured domai
   assert.match(sitemap, /<loc>https:\/\/example\.test\/blog\/zz-test-published\/<\/loc>\s*<lastmod>2020-02-03<\/lastmod>/);
   // A tag's lastmod is its newest change; tags kept out of search results are left out of the sitemap.
   assert.match(sitemap, /<loc>https:\/\/example\.test\/blog\/tags\/zz-test-tag\/<\/loc>\s*<lastmod>2020-02-03<\/lastmod>/);
-  assert.ok(!sitemap.includes('/blog/tags/dotnet/'), 'a one-article tag should not be in the sitemap');
+  assert.ok(!sitemap.includes('/blog/tags/zz-solo-dotnet/'), 'a one-article tag should not be in the sitemap');
   assert.match(read('robots.txt'), new RegExp(`Sitemap: ${SITE_URL}/sitemap.xml`));
 });
 

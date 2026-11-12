@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "articles": {
+    "a3c21ccdac5c": {
+      "file": "../../src/blog/posts/deep-dive-into-azure-functions-building-serverless-applications.md",
+      "hash": "d3145c0af55674e00b67cdfee34975d3b281320621c71f6f36cda0a404fcb16f"
+    },
+    "0b936fe07695": {
+      "file": "../../src/blog/posts/navigating-dotnet-8-deployment-updates-dockerfile-and-kubernetes-yaml-manifest.md",
+      "hash": "44a4887941c6ed4a3bea3ccbcf04dc8e86473426089754f7f272897555e1ed6a"
+    },
+    "924063ac6646": {
+      "file": "../../src/blog/posts/deepseek-locally-simplified-effortless-ai-integration-for-developers.md",
+      "hash": "e0ff49a5586692635e3512df3264c31a43d52ef3b64d1109dc899a65288a062c"
+    },
+    "662b4f06e603": {
+      "file": "../../src/blog/posts/fastendpoints-vs-traditional-controllers-in-dotnet-a-modern-api-framework.md",
+      "hash": "496b8b2a4575414be1fa6b8fc8132751492146e9d8c78cd0b6e8620b5f3b71c0"
+    },
+    "25445581d38c": {
+      "file": "../../src/blog/posts/automapper-is-now-commercial-should-dotnet-developers-switch-to-mapster.md",
+      "hash": "fa48e4763a558dd3b2d3bcf3f76fd7c0bd13dc1be576c3efcee4cfcd615c25fa"
+    }
+  }
+}
