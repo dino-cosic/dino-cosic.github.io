@@ -6,7 +6,7 @@ The output is src/_includes/partials/portrait.html, an inline <svg> that the hom
 includes, so the hero works without JavaScript and Three.js reads the same geometry
 from the DOM.
 
-Requires: pillow, numpy, scipy, scikit-image.   Run from the repo root.
+Requires: tools/requirements.txt.   Run from the repo root.
 """
 import numpy as np, json, sys
 from PIL import Image

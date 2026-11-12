@@ -43,7 +43,7 @@ eleventy.config.js       build configuration
 Notes on the portfolio pages:
 
 - `src/index.njk` holds all homepage content. It uses the same layout, header and footer as the blog, with `bundle: home` to load `main.js` and the hero setup instead of the blog files.
-- The portrait strokes live in `src/_includes/partials/portrait.html`. Do not edit that file by hand. `tools/build_portrait.py` regenerates it from `data/dino-one-line.png` (needs pillow, numpy, scipy, scikit-image).
+- The portrait strokes live in `src/_includes/partials/portrait.html`. Do not edit that file by hand. `tools/build_portrait.py` regenerates it from `data/dino-one-line.png` (Python dependencies are in `tools/requirements.txt`).
 - `data/` is source material (résumé, copy, drawing). It is gitignored and kept only locally.
 - Every page uses `src/_includes/partials/header.njk`. A change to the navigation goes there only.
 - The sitemap date for the homepage is the date of the last commit that changed `src/index.njk`. The deploy checks out the full history for this reason.
@@ -197,6 +197,8 @@ For new articles, publish here first. If you also want the piece on Medium, use 
 2. Push to `main`, directly or through a pull request.
 
 `.github/workflows/deploy.yml` then installs dependencies, runs the tests, builds the site and deploys `dist/` to GitHub Pages. If an article has invalid metadata the build step fails and the live site stays as it was; the workflow log names the file and the field.
+
+`.github/workflows/test.yml` runs the same tests on every pull request, so problems show up before a merge to `main`.
 
 The site URL used for canonical links, the feed and the sitemap comes from the Pages configuration at build time (`SITE_URL`), with `https://dino-cosic.github.io` as the local default in `src/_data/site.js`. If you add a custom domain in the repository's Pages settings, generated URLs follow it on every page, the homepage included.
 
