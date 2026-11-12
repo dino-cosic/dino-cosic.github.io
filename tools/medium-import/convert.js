@@ -43,6 +43,8 @@ function truncate(text, max = 160) {
   return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), 60)).replace(/[\s,;:.]+$/, '')}…`;
 }
 
+const BLOCKS = new Set(['P', 'LI', 'BLOCKQUOTE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'TD', 'TH', 'FIGCAPTION', 'DIV', 'SECTION', 'BODY']);
+
 function createTurndown() {
   const turndown = new TurndownService({
     headingStyle: 'atx',
@@ -51,8 +53,22 @@ function createTurndown() {
     codeBlockStyle: 'fenced',
     emDelimiter: '*',
     strongDelimiter: '**',
+    // A backslash hard break: Turndown's default ("  ") is lost when trailing whitespace is trimmed below.
+    br: '\\',
   });
   turndown.use(gfm);
+  // A <br> with nothing after it in its block would leave a stray "\" at the end of the paragraph.
+  turndown.addRule('lineBreak', {
+    filter: 'br',
+    replacement(content, node, options) {
+      for (let el = node; el && !BLOCKS.has(el.nodeName); el = el.parentNode) {
+        for (let next = el.nextSibling; next; next = next.nextSibling) {
+          if (next.nodeType !== 3 || next.nodeValue.trim()) return `${options.br}\n`;
+        }
+      }
+      return '';
+    },
+  });
   // Turndown pads list markers to four columns ("-   item"); write the usual single space instead.
   turndown.addRule('listItem', {
     filter: 'li',
