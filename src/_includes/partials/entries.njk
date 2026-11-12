@@ -1,0 +1,51 @@
+{#- The article index: one ruled row per article, the same grammar as the roles list on the homepage. -#}
+{%- macro entries(posts, lead=false) -%}
+<ol class="entry-list" data-entries>
+  {%- for post in posts %}
+  <li class="entry{% if lead and loop.first %} entry-lead{% endif %}" data-entry data-search="{{ [post.data.title, post.data.description, post.data.tags | join(' ')] | join(' ') | lower }}">
+    <div class="entry-name">
+      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      <p class="entry-meta">
+        <time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+        <span>{{ post.content | readingTime }} min read</span>
+        {%- if post.data.draft %} <span class="draft-flag">Draft, not published</span>{% endif %}
+      </p>
+    </div>
+    <div class="entry-note">
+      {%- if post.data.coverImage %}
+      <a class="entry-cover" href="{{ post.url }}" tabindex="-1" aria-hidden="true"><img src="{{ post.data.coverImage }}" alt="" loading="lazy" decoding="async"></a>
+      {%- endif %}
+      <p>{{ post.data.description }}</p>
+      <div class="entry-foot">
+        <ul class="tags" aria-label="Tags">
+          {%- for tag in post.data.tags %}
+          <li><a href="/blog/tags/{{ tag | tagSlug }}/">{{ tag }}</a></li>
+          {%- endfor %}
+        </ul>
+        <a class="entry-more" href="{{ post.url }}" tabindex="-1" aria-hidden="true">Read article</a>
+      </div>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+{%- endmacro -%}
+
+{%- macro tagNav(tags, current) -%}
+{%- if tags.length %}
+<nav class="tag-nav" aria-label="Browse by tag">
+  <ul>
+    <li><a href="/blog/"{% if not current %} aria-current="page"{% endif %}>All</a></li>
+    {%- for tag in tags %}
+    <li><a href="/blog/tags/{{ tag.slug }}/"{% if current == tag.slug %} aria-current="page"{% endif %}>{{ tag.name }} <span class="num">{{ tag.posts.length }}</span></a></li>
+    {%- endfor %}
+  </ul>
+</nav>
+{%- endif %}
+{%- endmacro -%}
+
+{%- macro search() -%}
+<form class="blog-search" role="search" data-search-form hidden>
+  <label for="blog-q">Search articles</label>
+  <input type="search" id="blog-q" name="q" placeholder="Title, topic or tag" autocomplete="off" spellcheck="false">
+</form>
+{%- endmacro -%}

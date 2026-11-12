@@ -1,0 +1,77 @@
+{%- set metaTitle = (title + ", " + site.author.name) if title else site.title -%}
+{%- set metaDescription = description or site.blog.description -%}
+{%- set pageUrl = site.url + page.url -%}
+{%- set canonical = canonicalUrl or pageUrl -%}
+{%- set shareImage = (coverImage or site.ogImage) | absUrl -%}
+<!doctype html>
+<html lang="{{ site.language }}">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analyticsId }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ site.analyticsId }}');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ metaTitle }}</title>
+  <meta name="description" content="{{ metaDescription }}">
+  <meta name="author" content="{{ site.author.name }}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ecede9">
+  <link rel="canonical" href="{{ canonical }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.author.name }}, {{ site.blog.title }}" href="{{ site.blog.feedPath }}">
+
+  <meta property="og:site_name" content="{{ site.author.name }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ metaDescription }}">
+  <meta property="og:image" content="{{ shareImage }}">
+  {%- if ogType == 'article' %}
+  <meta property="article:published_time" content="{{ page.date.toISOString() }}">
+  {%- if updated %}
+  <meta property="article:modified_time" content="{{ updated.toISOString() }}">
+  {%- endif %}
+  <meta property="article:author" content="{{ site.author.name }}">
+  {%- for tag in tags %}
+  <meta property="article:tag" content="{{ tag }}">
+  {%- endfor %}
+  {%- endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="{{ site.author.x }}">
+  <meta name="twitter:title" content="{{ title or site.title }}">
+  <meta name="twitter:description" content="{{ metaDescription }}">
+  <meta name="twitter:image" content="{{ shareImage }}">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <script>document.documentElement.classList.add('js');</script>
+  {%- if ogType == 'article' %}
+  <script type="application/ld+json">{{ { title: title, description: description, date: page.date, updated: updated, url: canonical, image: shareImage, tags: tags } | blogPostingJsonLd | safe }}</script>
+  {%- endif %}
+</head>
+
+<body id="top">
+  {% include "partials/header.njk" %}
+
+  <div class="thread" aria-hidden="true"><span class="thread-fill"></span></div>
+
+  <main id="main" class="blog">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script type="module" src="/js/blog.js"></script>
+</body>
+</html>

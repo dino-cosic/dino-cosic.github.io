@@ -1,0 +1,102 @@
+---
+layout: layouts/base.njk
+---
+{%- set headings = content | toc -%}
+{%- set near = collections.posts | neighbours(page.url) -%}
+{%- set relatedList = collections.posts | related(page.url, tags) -%}
+<article class="post">
+  <header class="post-head container">
+    <p class="crumb"><a href="/blog/">All writing</a></p>
+    <h1>{{ title }}</h1>
+    <p class="lead post-desc">{{ description }}</p>
+    {%- if draft %}
+    <p class="draft-flag">Draft. This article is visible in local development only and is left out of the production build.</p>
+    {%- endif %}
+  </header>
+
+  {%- if coverImage %}
+  <figure class="post-cover container">
+    <img src="{{ coverImage }}" alt="{{ coverAlt or '' }}" decoding="async" fetchpriority="high">
+  </figure>
+  {%- endif %}
+
+  <div class="post-body container">
+    <aside class="post-side">
+      <dl class="post-meta">
+        <div><dt>Published</dt><dd><time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></dd></div>
+        {%- if updated %}
+        <div><dt>Updated</dt><dd><time datetime="{{ updated | isoDate }}">{{ updated | readableDate }}</time></dd></div>
+        {%- endif %}
+        <div><dt>Reading time</dt><dd>{{ content | readingTime }} min</dd></div>
+        <div>
+          <dt>Tags</dt>
+          <dd>
+            <ul class="tags">
+              {%- for tag in tags %}
+              <li><a href="/blog/tags/{{ tag | tagSlug }}/">{{ tag }}</a></li>
+              {%- endfor %}
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+      {%- if headings.length > 1 %}
+      <details class="toc" data-toc>
+        <summary>On this page</summary>
+        <nav aria-label="On this page">
+          <ol>
+            {%- for h in headings %}
+            <li><a href="#{{ h.id }}">{{ h.text }}</a>
+              {%- if h.children.length %}
+              <ol>
+                {%- for c in h.children %}
+                <li><a href="#{{ c.id }}">{{ c.text }}</a></li>
+                {%- endfor %}
+              </ol>
+              {%- endif %}
+            </li>
+            {%- endfor %}
+          </ol>
+        </nav>
+      </details>
+      {%- endif %}
+    </aside>
+
+    <div class="prose">
+      {{ content | safe }}
+
+      {%- if mediumUrl %}
+      <p class="post-origin">This article is also published <a href="{{ mediumUrl }}" rel="noopener">on Medium</a>.</p>
+      {%- endif %}
+    </div>
+  </div>
+
+  <footer class="post-foot container">
+    {%- if near.newer or near.older %}
+    <nav class="post-nav" aria-label="More articles">
+      {%- if near.older %}
+      <a class="post-nav-older" href="{{ near.older.url }}" rel="prev"><span>Previous article</span><strong>{{ near.older.data.title }}</strong></a>
+      {%- endif %}
+      {%- if near.newer %}
+      <a class="post-nav-newer" href="{{ near.newer.url }}" rel="next"><span>Next article</span><strong>{{ near.newer.data.title }}</strong></a>
+      {%- endif %}
+    </nav>
+    {%- endif %}
+
+    {%- if relatedList.length %}
+    <section class="related" aria-labelledby="related-title">
+      <h2 id="related-title">Related articles</h2>
+      <ul>
+        {%- for post in relatedList %}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+          <p>{{ post.data.description }}</p>
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endif %}
+
+    <p class="post-back"><a class="btn" href="/blog/">Back to all writing</a></p>
+  </footer>
+</article>

@@ -22,13 +22,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble site
-        run: |
-          mkdir dist
-          cp -r index.html 404.html robots.txt sitemap.xml css js assets dist/
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
+
+      - name: Test
+        run: npm test
+
+      # Fails the deploy when an article has invalid metadata. SITE_URL follows the Pages
+      # configuration, so a custom domain is picked up without a code change.
+      - name: Build site
+        run: npm run build
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
