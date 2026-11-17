@@ -4,20 +4,17 @@ permalink: /blog/
 title: Writing
 eleventyExcludeFromCollections: true
 ---
-{%- from "partials/entries.njk" import entries, tagNav, search -%}
-<section class="blog-index container" aria-labelledby="blog-title">
-  <div class="blog-head">
+{%- from "partials/entries.njk" import entries, search -%}
+<div class="blog-index container">
+  <header class="blog-head">
     <div class="section-head">
       <h1 id="blog-title">Writing</h1>
       <p class="lead">{{ site.blog.description }}</p>
     </div>
     {%- if collections.posts.length %}
-    <div class="blog-tools">
-      {{ search() }}
-      {{ tagNav(collections.blogTags, "") }}
-    </div>
+    {{ search() }}
     {%- endif %}
-  </div>
+  </header>
 
   {%- if collections.posts.length %}
   {{ entries(collections.posts, true) }}
@@ -25,4 +22,4 @@ eleventyExcludeFromCollections: true
   {%- else %}
   <p class="blog-empty lead">Nothing is published here yet. My earlier articles are on <a href="{{ site.mediumProfile }}" rel="noopener">Medium</a>.</p>
   {%- endif %}
-</section>
+</div>

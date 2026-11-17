@@ -65,11 +65,8 @@ if (navigator.clipboard) {
 // ---- article: table of contents ----
 const toc = document.querySelector('[data-toc]');
 if (toc) {
-  // Beside the article on wide screens it stays open; stacked above it on small ones it starts closed.
-  const wide = window.matchMedia('(min-width: 60.0625rem)');
-  const sync = () => { toc.open = wide.matches; };
-  sync();
-  wide.addEventListener('change', sync);
+  // The contents list starts closed so the text leads; it closes again after a jump to a section.
+  toc.addEventListener('click', (e) => { if (e.target.closest('a')) toc.open = false; });
 
   const links = new Map([...toc.querySelectorAll('a')].map((a) => [decodeURIComponent(a.hash.slice(1)), a]));
   const headings = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
