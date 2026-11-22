@@ -147,7 +147,7 @@
 .hero-inner {
   /* Fill the first screen, but stop growing past ~1080p: on tall (4K / 1440p) viewports the
      content keeps its size, so an uncapped hero just opens an empty band above the headline. */
-  min-height: min(calc(100svh - var(--banner-h) - var(--bar-h)), 1000px);
+  min-height: min(calc(100svh - var(--banner-h) - var(--bar-h)), 62.5rem);
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   column-gap: var(--space-2xl);
@@ -164,9 +164,13 @@
   position: relative;
   justify-self: end;
   align-self: end;
-  height: min(82svh, 880px);
+  /* Size from the width so the box always keeps the drawing's ratio. A fixed height with
+     max-width: 100% let the column clamp the width while the height stayed, which stretched the
+     WebGL canvas vertically on narrow-column, tall screens (16" MacBook Pro, 4K). */
+  --art-h: min(82svh, 55rem);
+  width: min(100%, calc(var(--art-h) * 640 / 838));
+  height: auto;
   aspect-ratio: 640 / 838;
-  max-width: 100%;
   margin-top: var(--space-xl);
 }
 .portrait { width: 100%; height: 100%; fill: none; stroke: var(--color-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -196,7 +200,7 @@ html.gl-failed:not(.still) .portrait path {
   .hero-inner { min-height: 0; grid-template-columns: minmax(0, 1fr); }
   .hero-copy { padding-bottom: 0; }
   .hero-inner { padding-top: var(--space-lg); padding-bottom: var(--space-lg); }
-  .hero-art { order: -1; justify-self: start; height: min(30svh, 280px); width: auto; margin: 0 0 var(--space-lg); }
+  .hero-art { order: -1; justify-self: start; --art-h: min(30svh, 280px); margin: 0 0 var(--space-lg); }
   .hero-actions .btn { flex: 1 1 auto; }
 }
 
