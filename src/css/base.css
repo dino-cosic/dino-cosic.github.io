@@ -20,6 +20,11 @@ button, input, select, textarea { font: inherit; }
 [data-slot] { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--color-paper-2, var(--color-paper)), var(--color-paper-3, var(--color-paper))); }
 [data-slot] > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 [data-slot]:has(> img) > :not(img):not([data-keep]) { display: none !important; }
+/* Wide screens (external 4K, large scaled displays): let the column and the type grow with the
+   viewport instead of leaving a 1440px strip in the middle. */
+@media (min-width: 1800px) { :root { --container: min(82vw, 2000px); --gutter: clamp(64px, 3.5vw, 112px); } }
+@media (min-width: 2200px) { html { font-size: 112.5%; } }
+@media (min-width: 3000px) { html { font-size: 131.25%; } }
 @media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
 @media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
